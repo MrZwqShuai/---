@@ -1,0 +1,10 @@
+<!--component/myToast/myToast.wxml-->
+<view class='toast-container'>
+<view class='toast-box' wx:if="{{isHide}}">
+<view class='toast-content'>
+<text class='toast-content-text'>
+{{message}}
+</text>
+</view>
+</view>
+</view>
