@@ -9,12 +9,15 @@
     </view>
     <view class="vcode">
       <input name="input" class="vcode-inp" placeholder="验证码" cursor-spacing="10" maxlength='11' placeholder-class='login-inpplaceholder' />
-      <text class='countdown'>{{countdown}}</text>
+      <button bindtap='sendCode'  class='btn-code' size='default' disabled="{{isNeedDsiable}}">
+        <text class='countdown' wx:if="{{!isCountDown}}">{{countdown}}</text>  
+        <text class='countdown' wx:else>{{times}}后重新发送</text>  
+      </button>
     </view>
     <button bindtap="login" class='login-btn'>我要登录</button>
   </view>
   <!-- 自定义弹窗  -->
-  <view class='toast'>
+  <!-- <view class='toast'>
   <toast message="validMessage"></toast>
-  </view>
+  </view> -->
 </view>

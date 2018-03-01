@@ -1,0 +1,31 @@
+<!--pages/honor/honor.wxml-->
+<view class='honor-container'>
+  <view class='honor-banner'>
+    <image src='/images/honor-banner.jpg' mode='widthFix'></image>
+  </view>
+  <view class='honor-content'>
+    <view class='honor-reward' wx:for="{{rewardTask}}">
+      <view class='reward-left'>
+        <image class='progress-img' src='/images/progress-img01.png' mode='widthFix'></image>
+      </view>
+      <view class='reward-center'>
+        <view class='goods-explain'>购买{{item.goods.name}}件{{item.goods.num}}</view>
+        <view class='progress-container'>
+          <view class="progress">
+            <view class="progress-bar progress-bar-danger progress-bar-striped active" style="width: {{item.percent}}">
+              <!-- <view class="progress-value">60%</view> -->
+            </view>
+          </view>
+          <view class='progress-logo'>
+            <image class='logo' src="/images/progress-icon.png" mode='widthFix'></image>
+          </view>
+        </view>
+        <text class='honor-percent'>{{item.percent}}</text>
+      </view>
+      <view class='receive-box'>
+        <text class='fragment-num'>{{item.fragment}}个碎片</text>
+        <text class="reward-right {{item.isRwdComplete? 'reward-complete' : 'reward-nocomplete'}}">点击领取</text>
+      </view>
+    </view>
+  </view>
+</view>

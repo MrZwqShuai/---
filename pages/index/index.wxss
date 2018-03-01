@@ -1,21 +1,188 @@
 /**index.wxss**/
+
+.container {
+  background-color: #79000d;
+}
+
+/* userinfo s */
+
 .userinfo {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  width: 100%;
+  background: url('http://36.7.138.114:124/app/2016/dist/images/top-banner.png') no-repeat;
+  background-size: 100% 415rpx;
 }
 
 .userinfo-avatar {
   width: 128rpx;
   height: 128rpx;
-  margin: 20rpx;
+  margin-top: 95rpx;
   border-radius: 50%;
 }
 
+.userinfo-rank {
+  font-size: 22rpx;
+  color: #f3ca6c;
+}
+
 .userinfo-nickname {
-  color: #aaa;
+  margin: 10rpx 0;
+  font-size: 38rpx;
+  color: #f3ca6c;
+}
+
+.userinfo-fragment, .userinfo-points {
+  font-size: 28rpx;
+  color: #f3ca6c;
+}
+
+.userinfo-fragment {
+  margin-right: 18px;
+}
+.userinfo-view{
+  text-align: center;
+}
+.fragment-points-con {
+  display: flex;
+  justify-content: center;
 }
 
 .usermotto {
   margin-top: 200px;
+}
+
+.top-banner {
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+}
+
+/* e */
+
+/* 导航dashboard s*/
+
+.dashboard {
+  width: 613rpx;
+  height: 390rpx;
+}
+.dashboard-position{
+  position:absolute;
+width:613rpx;
+top:29%;
+z-index:2;
+left:50%;
+transform:translate(-50%);
+
+}
+
+.dashboard-container {
+  width: 21%;
+  height: 200rpx;
+  margin: 0 2%;
+  float: left;
+}
+
+.nav-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+.nav-img {
+  width: 100%;
+  height: 100%;
+}
+
+.nav-explain {
+  position: absolute;
+  display: block;
+  width: 100%;
+  bottom: 0rpx;
+  text-align: center;
+  font-size: 24rpx;
+  color: #f3ca6c;
+}
+
+/* 导航dashboard e*/
+
+/* 兑换css s*/
+
+.exchange-banner {
+  width: 610rpx;
+  margin-top: 10rpx;
+}
+.exchange-mg{
+  width: 100%;
+}
+
+.exchange-content {
+  position: relative;
+  width: 720rpx;
+  height: 300rpx;
+}
+
+.exchange-img {
+  width: 100%;
+}
+
+.exchange-child-box {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.exchange-item {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 20%;
+  height: 100%;
+  margin-left: 25.5rpx;
+  margin-left: 3.5%;
+  float: left;
+}
+
+.exchange-child-img {
+  width: 160rpx;
+  height: 90rpx;
+}
+
+.exchange-child-explain {
+  width: 160rpx;
+  height: 40rpx;
+  font-size: 22rpx;
+  margin-bottom: 52rpx;
+}
+
+/* 兑换css e*/
+/* 底部s */
+.footer{
+  width: 100%;
+}
+.footer-bg{
+  width: 100%;
+}
+/* 底部e */
+/* 悬浮装饰 */
+.slide1-decoration{
+  position: fixed;
+  top: 45%;
+  left: 0;
+  width: 130rpx;
+}
+.slide1-img{
+  width: 100%;
+}
+.slide2-decoration{
+  position: fixed;
+  top: 39%;
+  right: 0;
+  width: 130rpx;
+  z-index: 1;
+}
+.slide2-img{
+  width: 100%;
 }

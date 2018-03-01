@@ -1,13 +1,61 @@
 <!--index.wxml-->
 <view class="container">
   <view class="userinfo">
+    <!-- <view class='top-container'> -->
     <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
     <block wx:else>
-      <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
-      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+      <view class='userinfo-view'>
+        <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover" mode='scaleToFill'></image>
+      </view>
+      <view class='userinfo-view'>
+        <text class="userinfo-rank">您在贯日当前排名: {{userInfo.rank}}</text>
+      </view>
+      <view class='userinfo-view'>
+        <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+      </view>
+      <view class="fragment-points-con">
+        <text class="userinfo-fragment">碎片: {{userInfo.fragment}}</text>
+        <text class="userinfo-points">积分: {{userInfo.points}}</text>
+      </view>
     </block>
   </view>
-  <view class="usermotto">
-    <text class="user-motto">{{motto}}</text>
+  <!-- </view> -->
+  <!-- 首页导航s -->
+  <view class="dashboard">
+  <view class='dashboard-position'>
+    <view wx:for-items="{{navs}}" wx:key="*this" class='dashboard-container'>
+      <view class='nav-container'>
+        <image src='{{item.url}}' mode='aspectFit' class='nav-img'></image>
+        <text class='nav-explain'>段位说明</text>
+      </view>
+    </view>
+  </view>
+  </view>
+  <!-- 首页导航e -->
+  <!-- 兑换礼品s -->
+  <view class='exchange-banner' bindtap='exchange'>
+    <image src="/images/exchange-banner.png" mode='widthFix' class='exchange-mg'></image>
+  </view>
+  <view class='exchange-content'>
+    <image src="/images/exchange-content.png" mode='widthFix' class='exchange-img'></image>
+    <view class='exchange-child-box'>
+      <view class='exchange-item' wx:for="{{rewards}}" wx:key="*this">
+        <image mode="scaleToFill" class='exchange-child-img' src="{{item.img}}"></image>
+        <text class='exchange-child-explain'> </text>
+      </view>
+    </view>
+  </view>
+  <!-- 兑换礼品e -->
+  <!-- 首页底部s -->
+  <view class='footer'>
+  <image mode='widthFix' src='/images/footer-banner.png' class='footer-bg'></image>
+  </view>
+  <!-- 首页底部e -->
+  <!-- 左右侧悬浮 -->
+  <view class='slide1-decoration'>
+  <image src="/images/decoration1.png" mode='widthFix' class='slide2-img'></image>
+  </view>
+  <view class='slide2-decoration'>
+  <image src="/images/decoration2.png" mode='widthFix' class='slide2-img'></image>
   </view>
 </view>

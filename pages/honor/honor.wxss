@@ -1,0 +1,186 @@
+/* pages/honor/honor.wxss */
+
+.honor-container {
+  width: 100%;
+  height: 100%;
+  background-color: #79080d;
+}
+
+.honor-banner {
+  width: 100%;
+  text-align: center;
+}
+
+.honor-content {
+  width: 100%;
+  text-align: center;
+}
+
+/* 进度条s */
+
+.progress-container {
+  display: flex;
+  margin-bottom: -18rpx;
+  justify-content: center;
+  align-items: center;
+}
+
+.progress {
+  width: 380rpx;
+  height: 30rpx;
+  background: #262626;
+  padding: 6rpx;
+  overflow: visible;
+  border-radius: 40rpx;
+}
+
+.progress .progress-bar {
+  height: 30rpx;
+  border-radius: 40rpx;
+  position: relative;
+  animation: animate-positive 2s;
+}
+
+.progress .progress-value {
+  display: block;
+  padding: 6rpx 14rpx;
+  font-size: 13px;
+  color: #fff;
+  border-radius: 8rpx;
+  background: #191919;
+  border: 1rpx solid #000;
+  position: absolute;
+  top: -40px;
+  right: -10px;
+}
+
+.progress .progress-value:after {
+  content: "";
+  border-top: 10px solid #191919;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  position: absolute;
+  bottom: -6px;
+  left: 26%;
+}
+
+.progress-bar.active {
+  animation: reverse progress-bar-stripes 0.40s linear infinite, animate-positive 2s;
+}
+
+.progress-bar-danger {
+  background-color: #f44336;
+}
+
+.progress-striped .progress-bar, .progress-bar-striped {
+  background-image: -webkit-linear-gradient(135deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-image: -o-linear-gradient(135deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-image: linear-gradient(135deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  -webkit-background-size: 40px 40px;
+  background-size: 40px 40px;
+}
+
+@-webkit-keyframes animate-positive {
+  0% {
+    width: 0;
+  }
+}
+
+@keyframes animate-positive {
+  0% {
+    width: 0;
+  }
+}
+
+.progress-logo {
+  width: 90rpx;
+  height: 90rpx;
+  margin-left: -20rpx;
+  background-color: #262626;
+  border-radius: 50%;
+}
+
+.logo {
+  width: 100rpx;
+  margin-top: -18rpx;
+  margin-left: 10rpx;
+}
+
+/* 进度条e */
+
+/* reward lists */
+
+.progress-img {
+  width: 121rpx;
+}
+
+.honor-content .honor-reward:nth-child(1) {
+  margin-top: 0rpx;
+}
+
+.honor-reward {
+  display: flex;
+  width: 100%;
+  height: 100rpx;
+  margin-top: 30rpx;
+  justify-content: center;
+  align-items: center;
+}
+
+.reward-center {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-right: 16rpx;
+}
+
+.reward-right {
+  margin-bottom: 25rpx;
+  padding: 9rpx 15rpx;
+  font-size: 20rpx;
+  font-weight: 600;
+  color: #713501;
+  border-radius: 14rpx;
+  box-shadow: 0rpx 5rpx 20rpx #000;
+}
+
+.reward-complete {
+  background: linear-gradient(to left, #bf965b, #fadca7, #bf965b);
+}
+
+.reward-nocomplete {
+  background: linear-gradient(to left, #9a9a9a, #c6c6c6, #9a9a9a);
+}
+
+.receive-box {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.fragment-num {
+  margin-bottom: 5rpx;
+  font-size: 20rpx;
+  color: #d8b75c;
+}
+
+.goods-explain {
+  margin-bottom: -18rpx;
+  padding-top: 10rpx;
+  font-size: 24rpx;
+}
+
+.honor-percent {
+  width: 100%;
+  padding-right: 35%;
+  text-align: end;
+  font-size: 20rpx;
+}
+
+.goods-explain, .honor-percent {
+  color: #d8b75c;
+}
+
+/* reward liste */
