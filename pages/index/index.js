@@ -10,20 +10,28 @@ Page({
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
     // 首页导航
     navs: [{
+      page: '../news/news',
       url: '/images/nav01.png'
     }, {
+      page: '../news/news',
       url: '/images/nav02.png'
     }, {
+      page: '../news/news',
       url: '/images/nav03.png'
     }, {
+      page: '../news/news',
       url: '/images/nav04.png'
     }, {
+      page: '../honor/honor',
       url: '/images/nav05.png'
     }, {
+      page: '../honor/honor',
       url: '/images/nav06.png'
     }, {
+      page: '../honor/honor',
       url: '/images/nav07.png'
     }, {
+      page: '../honor/honor',
       url: '/images/nav08.png'
     }],
     rewards:[{
@@ -104,5 +112,14 @@ Page({
    */
   exchange: function() {
     console.log('兑换礼品');
-  }
+  },
+  // 导航
+  navigate(event) {
+    let pageUrl = event.currentTarget.dataset.page;
+    wx.navigateTo({
+      url: pageUrl,
+      complete: function() {
+      }
+    })
+  },
 })

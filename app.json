@@ -1,9 +1,9 @@
 {
   "pages": [
+    "pages/login/login",
+    "pages/index/index",
     "pages/news/news",
     "pages/honor/honor",
-    "pages/index/index",
-    "pages/login/login",
     "pages/logs/logs"
   ],
   "window": {

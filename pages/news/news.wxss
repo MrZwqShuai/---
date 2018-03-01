@@ -42,10 +42,34 @@
   background-color: #d8b75c;
 }
 .avator{
-  width: 155rpx;
-  height: 155rpx;
+  width: 140rpx;
+  height: 140rpx;
   border-radius: 50%;
 }
 .news-content{
-  margin-left: 28rpx;
+  width: 420rpx;
+  margin-left: 35rpx;
+  /* overflow: hidden; */
+}
+.news-content .title{
+  font-size: 38rpx;
+}
+.new-details{
+  display: flex;
+  margin-bottom: 18rpx;
+  justify-content: space-between;
+}
+.matter{
+    display: -webkit-box;
+    font-size:28rpx;
+    color:#fff;
+    line-height: 40rpx;
+    word-break: break-all;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp:3;
+    overflow: hidden;
+    text-overflow:ellipsis;
+}
+.date{
+  font-size: 26rpx;
 }

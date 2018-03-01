@@ -55,7 +55,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.setNavigationBar();
+    // this.setNavigationBar();
   },
 
   /**
@@ -82,7 +82,7 @@ Page({
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-
+    this.navigateBack();
   },
 
   /**
@@ -131,4 +131,11 @@ Page({
     })
   },
   // 请求loading
+  
+  // 返回上一页
+  // navigateBack: function() {
+  //   wx.navigateBack({
+  //     delta: 3,
+  //   })
+  // } 
 })

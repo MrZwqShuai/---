@@ -49,7 +49,7 @@ Page({
         this.data.times = 59;
         this.showSendCodeBtn();
       }
-    }, 100);
+    }, 1000);
   },
   /**
    * 登录
