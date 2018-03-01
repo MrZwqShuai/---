@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/news/news",
     "pages/honor/honor",
     "pages/index/index",
     "pages/login/login",
@@ -8,7 +9,7 @@
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "WeChat",
+    "navigationBarTitleText": "贯日积分",
     "navigationBarTextStyle": "black"
   }
 }
