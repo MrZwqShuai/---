@@ -1,0 +1,140 @@
+/* pages/mall/mall.wxss */
+
+.mall-container {
+  width: 100%;
+  height: auto;
+  background-color: #761010;
+}
+
+.top-banner {
+  width: 100%;
+}
+
+.coupon-container {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+}
+
+.coupon-container .coupon:nth-child(2) {
+  margin: 0 20rpx;
+}
+
+.coupon {
+  position: relative;
+  width: 216rpx;
+}
+
+.coupon-img {
+  width: 216rpx;
+  height: 144rpx;
+  background-color: #761010;
+  border-top: 4rpx solid #d2ae76;
+  border-bottom: 4rpx solid #d2ae76;
+  border-left: 4rpx solid #d2ae76;
+  border-right: 4rpx solid #ece1b9;
+  border-radius: 16rpx;
+}
+
+.cash-box {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 22rpx;
+  left: 29rpx;
+  width: 112rpx;
+}
+
+.cash {
+  font-size: 55rpx;
+  font-weight: bold;
+  color: #efecc1;
+}
+
+.coupon-point {
+  position: absolute;
+  top: 40%;
+  right: 1rpx;
+  font-size: 18rpx;
+  color: #efecc1;
+}
+
+/* goods shelves s*/
+
+.goods-shelves {
+  position: relative;
+  width: 675rpx;
+  margin: 20rpx auto 0;
+}
+
+.goods-shelves-bg {
+  width: 100%;
+}
+
+.goods-shelves-body {
+  position: absolute;
+  top: 130rpx;
+  left: 10rpx;
+  width: 655rpx;
+  height: 600rpx;
+}
+
+.scroll-body {
+  width: 100%;
+  height: 100%;
+}
+
+.bc_green {
+  width: 100%;
+  height: 120%;
+  background: #65000b;
+}
+
+.goods {
+  display: flex;
+  width: 300rpx;
+  height: 300rpx;
+  float: left;
+  margin-left: 15rpx;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.goods-img {
+  width: 100%;
+  height: 175rpx;
+}
+
+.goods-explain {
+  margin: 15rpx 0;
+  padding: 5rpx 20rpx;
+  font-size: 30rpx;
+  font-weight: bold;
+  color: #8d1211;
+  background: linear-gradient(to left, #e7ba68, #f0d8af, #e7ba68);
+  border-radius: 8rpx;
+  border: 2rpx solid #cab579;
+}
+
+.exchange-column {
+  display: flex;
+  justify-content: center;
+}
+
+.fragment-num {
+  padding-right: 20rpx;
+  font-size: 24rpx;
+  color: #efe1bf;
+}
+
+.exchange-btn {
+  padding: 2rpx 18rpx;
+  font-size: 20rpx;
+  color: #3f0c09;
+  background: linear-gradient(#f0ebc1, #c49459);
+  border-radius: 18rpx;
+}
+
+/* goods shelves e*/

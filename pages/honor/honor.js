@@ -9,6 +9,7 @@ Page({
     // 成就列表
     rewardTask: [{
       fragment: 50,
+      img: '/images/progress-img01.png',
       goods: {
         name: '麦卡米卡',
         num: 10
@@ -16,7 +17,8 @@ Page({
       percent: '50%',
       isRwdComplete: true
     }, {
-      fragment: 50,
+        fragment: 50,
+        img: '/images/progress-img02.png',
       goods: {
         name: '麦卡米卡',
         num: 10
@@ -24,29 +26,32 @@ Page({
       percent: '30%',
       isRwdComplete: true
     }, {
-      fragment: 50,
+        fragment: 50,
+        img: '/images/progress-img03.png',
       goods: {
         name: '麦卡米卡',
         num: 10
       },
       percent: '50%',
-      isRwdComplete: false
+      isRwdComplete: true
     }, {
-      fragment: 50,
+        fragment: 50,
+        img: '/images/progress-img04.png',
       goods: {
         name: '麦卡米卡',
         num: 10
       },
       percent: '20%',
-      isRwdComplete: false
+      isRwdComplete: true
     }, {
-      fragment: 50,
+        fragment: 50,
+        img: '/images/progress-img05.png',
       goods: {
         name: '麦卡米卡',
         num: 10
       },
       percent: '95%',
-      isRwdComplete: true
+      isRwdComplete: false
     }]
   },
 

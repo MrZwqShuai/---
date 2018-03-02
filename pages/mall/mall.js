@@ -1,11 +1,37 @@
-// pages/achievement/a.js
+// pages/mall/mall.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-  
+    coupons: [{
+      cash: 10,
+      couponScore: 1000
+    }, {
+      cash: 50,
+      couponScore: 5000
+    }, {
+      cash: 100,
+      couponScore: 10000
+    }],
+    goods: [{
+      img: '/images/nav01.png',
+      name: '贯日湿巾80片',
+      fragment: 900
+    }, {
+      img: '/images/nav02.png',
+      name: '麦卡纸抽',
+      fragment: 1600
+      }, {
+        img: '/images/nav03.png',
+        name: '麦卡纸抽',
+        fragment: 1000
+    }, {
+      img: '/images/nav04.png',
+      name: '麦卡纸尿裤',
+      fragment: 1500
+    }]
   },
 
   /**
@@ -62,5 +88,14 @@ Page({
    */
   onShareAppMessage: function () {
   
+  },
+  // 加载更多商品
+  loadmore: function() {
+    wx.showLoading({
+      title: '加载中',
+    })
+    setTimeout(() => {
+      wx.hideLoading();
+    }, 1000)
   }
 })

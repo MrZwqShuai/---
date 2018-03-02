@@ -6,7 +6,7 @@
   <view class='honor-content'>
     <view class='honor-reward' wx:for="{{rewardTask}}">
       <view class='reward-left'>
-        <image class='progress-img' src='/images/progress-img01.png' mode='widthFix'></image>
+        <image class='progress-img' src='{{item.img}}' mode='widthFix'></image>
       </view>
       <view class='reward-center'>
         <view class='goods-explain'>购买{{item.goods.name}}件{{item.goods.num}}</view>
