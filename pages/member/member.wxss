@@ -2,7 +2,7 @@
 
 .member-container {
   width: 100%;
-  height: 100%;
+  height: auto;
   background-color: #79000d;
 }
 
@@ -13,6 +13,10 @@
   width: 617rpx;
   height: 100rpx;
   margin: 10rpx auto;
+}
+.member-content{
+  width: 100%;
+  height: 100%;
 }
 
 .form-icon {

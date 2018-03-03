@@ -14,7 +14,7 @@ Page({
       url: '/images/nav01.png',
       title: '段位说明'
     }, {
-      page: '../news/news',
+        page: '../member/member',
       url: '/images/nav02.png',
       title: '我的背包'
     }, {
@@ -22,7 +22,7 @@ Page({
       url: '/images/nav03.png',
       title: '消费记录'
     }, {
-      page: '../news/news',
+      page: '../sign/sign',
       url: '/images/nav04.png',
       title: '每日签到'
     }, {
@@ -30,7 +30,7 @@ Page({
       url: '/images/nav05.png',
       title: '每日任务'
     }, {
-      page: '../honor/honor',
+        page: '../news/news',
       url: '/images/nav06.png',
       title: '会员消息'
     }, {
@@ -38,7 +38,7 @@ Page({
       url: '/images/nav07.png',
       title: '异业推介'
     }, {
-      page: '../honor/honor',
+      page: '../mall/mall',
       url: '/images/nav08.png',
       title: '优妈商城'
     }],
