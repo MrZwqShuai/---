@@ -11,38 +11,46 @@ Page({
     // 首页导航
     navs: [{
       page: '../news/news',
-      url: '/images/nav01.png'
+      url: '/images/nav01.png',
+      title: '段位说明'
     }, {
       page: '../news/news',
-      url: '/images/nav02.png'
+      url: '/images/nav02.png',
+      title: '我的背包'
     }, {
       page: '../news/news',
-      url: '/images/nav03.png'
+      url: '/images/nav03.png',
+      title: '消费记录'
     }, {
       page: '../news/news',
-      url: '/images/nav04.png'
+      url: '/images/nav04.png',
+      title: '每日签到'
     }, {
       page: '../honor/honor',
-      url: '/images/nav05.png'
+      url: '/images/nav05.png',
+      title: '每日任务'
     }, {
       page: '../honor/honor',
-      url: '/images/nav06.png'
+      url: '/images/nav06.png',
+      title: '会员消息'
     }, {
       page: '../honor/honor',
-      url: '/images/nav07.png'
+      url: '/images/nav07.png',
+      title: '异业推介'
     }, {
       page: '../honor/honor',
-      url: '/images/nav08.png'
+      url: '/images/nav08.png',
+      title: '优妈商城'
     }],
-    rewards:[{
+    rewards: [{
       img: '/images/nav01.png',
       explain: '立即兑换'
     }, {
       img: '/images/nav01.png',
       explain: '立即兑换'
-      }, {
-        img: '/images/nav01.png',
-        explain: '立即兑换'
+    }, {
+      img: '/images/nav01.png',
+      explain: '立即兑换'
     }, {
       img: '/images/nav01.png',
       explain: '立即兑换'
@@ -100,7 +108,7 @@ Page({
     console.log(this.data.userInfo);
     this.data.userInfo.rank = '';
     this.data.userInfo.fragment = '';
-    this.data.userInfo.fragment = '';
+    this.data.userInfo.points = '';
     this.setData({
       'userInfo.rank': '100',
       'userInfo.fragment': '100',
@@ -110,7 +118,7 @@ Page({
   /**
    * 兑换礼品
    */
-  exchange: function() {
+  exchange: function () {
     console.log('兑换礼品');
   },
   // 导航
@@ -118,7 +126,7 @@ Page({
     let pageUrl = event.currentTarget.dataset.page;
     wx.navigateTo({
       url: pageUrl,
-      complete: function() {
+      complete: function () {
       }
     })
   },

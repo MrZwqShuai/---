@@ -1,0 +1,21 @@
+<!--pages/member/member.wxml-->
+<view class='member-container'>
+<information user-info="{{userInfo}}"></information>
+<view class='resive-avatar' bindtap='uploadAvatar'>点击修改头像</view>
+<view class='member-content'>
+<form>
+<view class='member-form' wx:for="{{members}}" wx:key="*this">
+<view class='member-form-item'></view>
+<image src='{{item.icon}}' class='form-icon' mode='widthFix'></image>
+<text class='icon-explain' space="true">{{item.iconDesc}}</text>
+<input placeholder='请输入{{item.iconDesc}}' class='submit-input'></input>
+<image src="/images/member08.png" class='revise-btn' mode='widthFix'></image>
+</view>
+<!-- 提交 -->
+<view class='submit-box'>
+<button class='submit' bindtap='submit'>确认信息</button>
+<button class='cancel' bindtap="logout">账号注销</button>
+</view>
+</form>
+</view>
+</view>

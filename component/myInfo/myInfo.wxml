@@ -1,0 +1,22 @@
+<!--component/myInfo/myInfo.wxml-->
+<view class="container">
+  <view class="userinfo">
+    <!-- <view class='top-container'> -->
+    <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
+    <block wx:else>
+      <view class='userinfo-view'>
+        <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover" mode='scaleToFill'></image>
+      </view>
+      <view class='userinfo-view'>
+        <text class="userinfo-rank">您在贯日当前排名: {{userInfo.rank}}</text>
+      </view>
+      <view class='userinfo-view'>
+        <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+      </view>
+      <view class="fragment-points-con">
+        <text class="userinfo-fragment">碎片: {{userInfo.fragment}}</text>
+        <text class="userinfo-points">积分: {{userInfo.points}}</text>
+      </view>
+    </block>
+  </view>
+  </view>

@@ -1,0 +1,84 @@
+/* pages/member/member.wxss */
+
+.member-container {
+  width: 100%;
+  height: 100%;
+  background-color: #79000d;
+}
+
+.member-form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 585rpx;
+  height: 100rpx;
+  margin: 10rpx auto;
+}
+
+.form-icon {
+  width: 52rpx;
+}
+
+.icon-explain {
+  width: 142rpx;
+  text-align: center;
+  font-size: 27rpx;
+  color: #f5ca89;
+}
+
+.submit-input {
+  width: 358rpx;
+  height: 71rpx;
+  text-indent: 20rpx;
+  border-radius: 16rpx;
+  font-size: 26rpx;
+  background-color: #ccc;
+}
+
+.revise-btn {
+  width: 135rpx;
+  margin-left: 15rpx;
+}
+
+.resive-avatar {
+  width: 224rpx;
+  height: 60rpx;
+  margin: 20rpx auto;
+  padding: 5rpx;
+  text-align: center;
+  line-height: 60rpx;
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #622e01;
+  background: linear-gradient(to left, #f2bf5b, #f8d48c, #f2bf5b);
+  border-radius: 24rpx;
+  border-left: 2rpx solid #f37c08;
+  border-top: 2rpx solid #f8eac0;
+  border-right: 2rpx solid #f37c08;
+  border-bottom: 2rpx solid #f8eac0;
+  box-shadow: 1rpx 10rpx 10rpx rgba(0, 0, 0, 0.788235294117647);
+}
+
+/* 信息提交 */
+
+.submit-box {
+  display: flex;
+  justify-content: center;
+  margin: 20rpx 0 40rpx 0;
+}
+
+.submit, .cancel {
+  width: 200rpx;
+  height: 65rpx;
+  line-height: 65rpx;
+  font-size: 28rpx;
+  font-weight: bold;
+  color: #622e01;
+  background: linear-gradient(to left, #f2bf5b, #f8d48c, #f2bf5b);
+  border-radius: 15rpx;
+  box-shadow: 1rpx 10rpx 10rpx #000;
+}
+
+.cancel {
+  margin-left: 10rpx;
+}

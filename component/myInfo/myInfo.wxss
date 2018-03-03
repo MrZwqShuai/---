@@ -1,0 +1,54 @@
+/* component/myInfo/myInfo.wxss */
+/* userinfo s */
+
+.userinfo {
+  width: 100%;
+  background: url('http://36.7.138.114:124/app/2016/dist/images/top-banner.png') no-repeat;
+  background-size: 100% 415rpx;
+}
+
+.userinfo-avatar {
+  width: 128rpx;
+  height: 128rpx;
+  margin-top: 95rpx;
+  border-radius: 50%;
+}
+
+.userinfo-rank {
+  font-size: 22rpx;
+  color: #f3ca6c;
+}
+
+.userinfo-nickname {
+  margin: 10rpx 0;
+  font-size: 38rpx;
+  color: #f3ca6c;
+}
+
+.userinfo-fragment, .userinfo-points {
+  font-size: 28rpx;
+  color: #f3ca6c;
+}
+
+.userinfo-fragment {
+  margin-right: 18px;
+}
+.userinfo-view{
+  text-align: center;
+}
+.fragment-points-con {
+  display: flex;
+  justify-content: center;
+}
+
+.usermotto {
+  margin-top: 200px;
+}
+
+.top-banner {
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+}
+
+/* e */

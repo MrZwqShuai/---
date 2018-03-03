@@ -26,7 +26,7 @@
     <view wx:for-items="{{navs}}" wx:key="*this" class='dashboard-container' bindtap='navigate' data-page="{{item.page}}">
       <view class='nav-container'>
         <image src='{{item.url}}' mode='aspectFit' class='nav-img'></image>
-        <text class='nav-explain'>段位说明</text>
+        <text class='nav-explain'>{{item.title}}</text>
       </view>
     </view>
   </view>

@@ -1,3 +1,4 @@
+const API = require('../../utils/api.js').url;
 // pages/mall/mall.js
 Page({
 
@@ -31,7 +32,23 @@ Page({
       img: '/images/nav04.png',
       name: '麦卡纸尿裤',
       fragment: 1500
-    }]
+      }, {
+        img: '/images/nav01.png',
+        name: '贯日湿巾80片',
+        fragment: 900
+      }, {
+        img: '/images/nav02.png',
+        name: '麦卡纸抽',
+        fragment: 1600
+      }, {
+        img: '/images/nav03.png',
+        name: '麦卡纸抽',
+        fragment: 1000
+      }, {
+        img: '/images/nav04.png',
+        name: '麦卡纸尿裤',
+        fragment: 1500
+      }]
   },
 
   /**
@@ -91,11 +108,30 @@ Page({
   },
   // 加载更多商品
   loadmore: function() {
+    this.showLoading();
+    wx.request({
+      url: API + '/loadMore',
+      success: ({data}) => {
+        this.data.goods = this.data.goods.concat(data.data.goods);
+        this.setData({
+          goods: this.data.goods
+        });
+        wx.hideLoading();
+      },
+      fail: (error) => {
+        console.log(error.data.goods);
+        wx.hideLoading();
+        wx.showToast({
+          title: '数据加载错误(findUser)',
+          icon: "none",
+          duration: 2000
+        })
+      }
+    })
+  },
+  showLoading() {
     wx.showLoading({
       title: '加载中',
     })
-    setTimeout(() => {
-      wx.hideLoading();
-    }, 1000)
   }
 })
