@@ -1,6 +1,8 @@
 // pages/member/member.js
-Page({
 
+//获取应用实例
+const app = getApp()
+Page({
   /**
    * 页面的初始数据
    */
@@ -48,15 +50,39 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
-  
+  onLoad: function () {
+    if (app.globalData.userInfo) {
+      this.setData({
+        userInfo: app.globalData.userInfo,
+        hasUserInfo: true
+      })
+    } else if (this.data.canIUse) {
+      // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
+      // 所以此处加入 callback 以防止这种情况
+      app.userInfoReadyCallback = res => {
+        this.setData({
+          userInfo: res.userInfo,
+          hasUserInfo: true
+        })
+      }
+    } else {
+      // 在没有 open-type=getUserInfo 版本的兼容处理
+      wx.getUserInfo({
+        success: res => {
+          app.globalData.userInfo = res.userInfo
+          this.setData({
+            userInfo: res.userInfo,
+            hasUserInfo: true
+          })
+        }
+      })
+    }
+    this.getPoint();
   },
-
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-  
   },
 
   /**
@@ -131,5 +157,16 @@ Page({
         title: '退出成功',
       });
     }, 500);
-  }
+  },
+  // 获取用户在贯日积分活动中的信息
+  getPoint: function () {
+    this.data.userInfo.rank = '';
+    this.data.userInfo.fragment = '';
+    this.data.userInfo.points = '';
+    this.setData({
+      'userInfo.rank': '100',
+      'userInfo.fragment': '100',
+      'userInfo.points': '10'
+    });
+  },
 })

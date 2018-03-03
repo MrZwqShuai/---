@@ -6,7 +6,7 @@ Component({
   properties: {
     userInfo: {
       type: 'object',
-      value: ''
+      value: '222'
     },
     hasUserInfo: Boolean,
     canIUse: Boolean
@@ -24,5 +24,9 @@ Component({
    */
   methods: {
 
+  },
+  ready: function() {
+    console.log('加载子组件...');
+    console.log(this.data.userInfo, '----');
   }
 })
