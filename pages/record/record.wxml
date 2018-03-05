@@ -1,0 +1,29 @@
+<!--pages/record/record.wxml-->
+<view class='record-container'>
+  <view class='record-container-top'>
+    <image src="/images/honor-banner.jpg" class='record-banner' mode="scaleToFill"></image>
+    <image src="/images/ribbon.png" class='ribbon-icon' mode="widthFix"></image>
+    <view class='search-box'>
+      <view class='search-icon-con'>
+        <image src='/images/search-record.png' class='search-icon' mode='widthFix'></image>
+      </view>
+      <input type='text' class='search-input' placeholder='输入商品名称或日期...'></input>
+      <button class='search-btn'>SEARCH</button>
+    </view>
+  </view>
+  <!-- 购买纪录s -->
+  <view class='buy-record'>
+    <scroll-view scroll-y style='height: 100%;' bindscrolltolower="loadmore" scroll-with-animation="true">
+      <view class='record-history'>
+        <view class='recore-item' wx:for="{{recordHistory}}" wx:key="*this">
+          <view class='recore-txt'>
+            <text class='content'>{{item.content}}</text>
+            <text class='date'>{{item.date}}</text>
+          </view>
+          <image src='/images/line.png' class='line' mode='widthFix'></image>
+        </view>
+      </view>
+    </scroll-view>
+  </view>
+  <!-- 购买纪录e -->
+</view>

@@ -18,7 +18,7 @@ Page({
       url: '/images/nav02.png',
       title: '我的背包'
     }, {
-      page: '../news/news',
+        page: '../record/record',
       url: '/images/nav03.png',
       title: '消费记录'
     }, {

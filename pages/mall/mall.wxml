@@ -1,32 +1,34 @@
 <!--pages/mall/mall.wxml-->
 <view class='mall-container'>
-<image src='/images/mall-banner.jpg' mode='widthFix' class='top-banner' mode='widthFix'></image>
-<!-- 优惠券s -->
-<view class='coupon-container'>
-<view class='coupon' wx:for="{{coupons}}" wx:key="*this">
-<image src='/images/coupon.png' class='coupon-img'></image>
-<view class='cash-box'><text class='cash'>{{item.cash}}</text></view>
-<text class='coupon-point'>{{item.couponScore}}积分</text>
-</view>
-</view>
-<!-- 优惠券e -->
-<!-- goods shelves -->
-<view class='goods-shelves'>
-<image class='goods-shelves-bg' src="/images/goods-box.png" mode='widthFix'></image>
-<!-- goods main -->
-<view class='goods-shelves-body'>
-<scroll-view scroll-y="true" class='scroll-body' style='height: 100%;' bindscrolltolower="loadmore" scroll-with-animation="true">
-<view class="scroll-view-item bc_green">
-<view class='goods' wx:for="{{goods}}" wx:key="{{*this}}">
-<image src='{{item.img}}' class='goods-img'></image>
-<text class='goods-explain'>{{item.name}}</text>
-<view class='exchange-column'>
-<text class='fragment-num'>{{item.fragment}}碎片</text>
-<text class='exchange-btn'>点击兑换</text>
-</view>
-</view>
-</view>
-</scroll-view>
-</view>
-</view>
+  <image src='/images/mall-banner.jpg' mode='widthFix' class='top-banner' mode='widthFix'></image>
+  <!-- 优惠券s -->
+  <view class='coupon-container'>
+    <view class='coupon' wx:for="{{coupons}}" wx:key="*this">
+      <image src='/images/coupon.png' class='coupon-img'></image>
+      <view class='cash-box'>
+        <text class='cash'>{{item.cash}}</text>
+      </view>
+      <text class='coupon-point'>{{item.couponScore}}积分</text>
+    </view>
+  </view>
+  <!-- 优惠券e -->
+  <!-- goods shelves -->
+  <view class='goods-shelves'>
+    <image class='goods-shelves-bg' src="/images/goods-box.png" mode='widthFix'></image>
+    <!-- goods main -->
+    <view class='goods-shelves-body'>
+      <scroll-view scroll-y="true" class='scroll-body' style='height: 100%;' bindscrolltolower="loadmore" scroll-with-animation="true">
+        <view class="scroll-view-item bc_green">
+          <view class='goods' wx:for="{{goods}}" wx:key="{{*this}}">
+            <image src='{{item.img}}' class='goods-img'></image>
+            <text class='goods-explain'>{{item.name}}</text>
+            <view class='exchange-column'>
+              <text class='fragment-num'>{{item.fragment}}碎片</text>
+              <text class='exchange-btn'>点击兑换</text>
+            </view>
+          </view>
+        </view>
+      </scroll-view>
+    </view>
+  </view>
 </view>

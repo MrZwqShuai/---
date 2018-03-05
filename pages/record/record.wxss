@@ -1,0 +1,111 @@
+/* pages/record/record.wxss */
+
+.record-container {
+  width: 100%;
+  height: 100%;
+  background-color: #65000b;
+}
+
+.record-container-top {
+  padding-bottom: 25rpx;
+  background-color: #761010;
+}
+
+.record-banner {
+  width: 100%;
+  height: 446rpx;
+}
+
+.ribbon-icon {
+  width: 100%;
+}
+
+/* 搜索框s */
+
+.search-box {
+  display: flex;
+  margin: 15rpx auto;
+  width: 676rpx;
+  height: 87rpx;
+  margin: 15rpx auto;
+  padding: 0 8rpx;
+  justify-content: center;
+  align-items: center;
+  background-color: #dcc28f;
+  border: 4rpx solid #d4b07a;
+  border-radius: 15rpx;
+}
+
+.search-icon {
+  width: 45rpx;
+  height: 61rpx;
+}
+
+.search-icon-con {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  width: 60rpx;
+  height: 63.2rpx;
+  background-color: #ddd;
+  border-top-left-radius: 15rpx;
+  border-bottom-left-radius: 15rpx;
+}
+
+.search-input {
+  width: 407rpx;
+  height: 63.2rpx;
+  text-indent: 15rpx;
+  font-size: 28rpx;
+  background-color: #ddd;
+}
+
+.search-btn {
+  width: 222.3rpx;
+  height: 63.2rpx;
+  line-height: 63.2rpx;
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #501111;
+  background: linear-gradient(to top, #cd9f64, #dfc997, #cd9f64);
+  border-radius: 0;
+  border-top-right-radius: 15rpx;
+  border-bottom-right-radius: 15rpx;
+}
+
+/* 搜索框e */
+
+/* 购买记录s */
+
+.buy-record {
+  width: 100%;
+  padding-top: 30rpx;
+  background-color: #65000b;
+}
+
+.buy-record .line {
+  width: 100%;
+}
+.record-history{
+  width: 100%;
+  height: 500rpx;
+}
+.recore-txt {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 669rpx;
+  margin: 0 auto -12rpx;
+}
+
+.recore-txt .content {
+  font-size: 28rpx;
+  color: #e4e4e4;
+}
+
+.recore-txt .date {
+  font-size: 28rpx;
+  color: #c49e50;
+}
+
+/* 购买记录e */

@@ -1,13 +1,14 @@
 {
   "pages": [
+    "pages/login/login",
+    "pages/news/news",
     "pages/index/index",
     "pages/member/member",
-    "pages/login/login",
     "pages/mall/mall",
     "pages/honor/honor",
-    "pages/news/news",
     "pages/logs/logs",
-    "pages/sign/sign"
+    "pages/sign/sign",
+    "pages/record/record"
   ],
   "window": {
     "backgroundTextStyle": "light",

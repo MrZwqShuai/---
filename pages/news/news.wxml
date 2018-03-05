@@ -1,21 +1,21 @@
 <!--pages/news/news.wxml-->
 <view class='news-container'>
-<view class='mail' wx:if="{{item.hasRead}}" wx:for="{{news}}">
-   <scroll-view scroll-x="true" class='mail-scroll' scroll-with-animation="false">
-   <view class='main-body'>
-   <view>
-   <image src='http://5b0988e595225.cdn.sohucs.com/images/20180227/fc23d13f015f4b9198c2021021f834c8.jpeg' class='avator'></image>
-   </view>
-   <view class='news-content'>
-   <view class='new-details'>
-   <text class='title'>消息中心</text>
-   <text class='date'>{{index}}小时前</text>
-   </view>
-   
-   <text class='matter'>{{index}}内容呢内容呢内容呢内容呢内容呢</text>
-   </view>
-   </view>
-   <view class='delete-btn' bindtap="deleteNews" data-deleteIdx='{{index}}'>删除</view>
-  </scroll-view> 
-</view>
+  <view class='mail' wx:if="{{item.hasRead}}" wx:for="{{news}}">
+    <scroll-view scroll-x="true" class='mail-scroll' scroll-with-animation="false">
+      <view class='main-body'>
+        <view>
+          <image src='http://5b0988e595225.cdn.sohucs.com/images/20180227/fc23d13f015f4b9198c2021021f834c8.jpeg' class='avator'></image>
+        </view>
+        <view class='news-content'>
+          <view class='new-details'>
+            <text class='title'>消息中心</text>
+            <text class='date'>{{index}}小时前</text>
+          </view>
+          <text class='matter'>{{index}}内容呢内容呢内容呢内容呢内容呢</text>
+        </view>
+        <image src='/images/close-message.png' mode='widthFix' class='icon-message'></image>
+      </view>
+      <view class='delete-btn' bindtap="deleteNews" data-deleteIdx='{{index}}'>删除</view>
+    </scroll-view>
+  </view>
 </view>

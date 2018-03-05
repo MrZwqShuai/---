@@ -48,7 +48,7 @@
 }
 .news-content{
   width: 420rpx;
-  margin-left: 35rpx;
+  margin: 0 35rpx;
   /* overflow: hidden; */
 }
 .news-content .title{
@@ -72,4 +72,9 @@
 }
 .date{
   font-size: 26rpx;
+  color: #ec9b56;
+}
+.icon-message{
+  width: 65.5rpx;
+  margin-top: -48rpx;
 }
