@@ -29,10 +29,12 @@
   font-size: 24rpx;
   color: #fff;
 }
+
 .main-body .avator {
   margin-left: 25rpx;
 }
-.delete-btn{
+
+.delete-btn {
   width: 180rpx;
   height: 195rpx;
   display: inline-block;
@@ -41,40 +43,128 @@
   font-size: 34rpx;
   background-color: #d8b75c;
 }
-.avator{
+
+.avator {
   width: 140rpx;
   height: 140rpx;
   border-radius: 50%;
 }
-.news-content{
+
+.news-content {
   width: 420rpx;
   margin: 0 35rpx;
   /* overflow: hidden; */
 }
-.news-content .title{
+
+.news-content .title {
   font-size: 38rpx;
 }
-.new-details{
+
+.new-details {
   display: flex;
   margin-bottom: 18rpx;
   justify-content: space-between;
 }
-.matter{
-    display: -webkit-box;
-    font-size:28rpx;
-    color:#fff;
-    line-height: 40rpx;
-    word-break: break-all;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp:3;
-    overflow: hidden;
-    text-overflow:ellipsis;
+
+.matter {
+  display: -webkit-box;
+  font-size: 28rpx;
+  color: #fff;
+  line-height: 40rpx;
+  word-break: break-all;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
-.date{
+
+.date {
   font-size: 26rpx;
   color: #ec9b56;
 }
-.icon-message{
+
+.icon-message {
   width: 65.5rpx;
   margin-top: -48rpx;
+}
+
+/* 弹窗 */
+
+.popup-receive, .popup-warning {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.popup-receive .receive-img, .popup-warning .warning-img {
+  width: 100%;
+}
+
+.popup-receive {
+  width: 683rpx;
+}
+
+.popup-warning {
+  width: 645rpx;
+}
+
+.warning-img-con {
+  position: relative;
+}
+
+.close, .delete-sure, .cancel {
+  position: absolute;
+  width: 80rpx;
+  height: 80rpx;
+}
+
+.close {
+  top: 0;
+  right: 0;
+}
+
+.delete-sure {
+  bottom: 10rpx;
+  left: 25%;
+}
+
+.cancel {
+  bottom: 10rpx;
+  right: 27%;
+}
+.receive-img-con{
+  position: relative;
+}
+.close-reward{
+  position: absolute;
+  width: 80rpx;
+  height: 80rpx;
+  top: 0;
+  right: 0;
+}
+.click-receive{
+position:absolute;
+width:205rpx;
+height:80rpx;
+left:50%;
+bottom:60rpx;
+transform:translateX(-50%);
+}
+.receive-img-con .title{
+  position: absolute;
+  top: 48rpx;
+  left: 50%;
+  color: #ea2023;
+  font-size: 32rpx;
+  font-weight: 600;
+  transform: translateX(-50%);
+}
+.receive-img-con .reward{
+  position: absolute;
+  top: 108rpx;
+  left: 50%;
+  color: #ea2023;
+  font-size: 28rpx;
+  transform: translateX(-50%);
 }

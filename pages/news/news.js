@@ -5,49 +5,60 @@ Page({
    * 页面的初始数据
    */
   data: {
+    showReceive: false,
+    showWarning: false,
     toView: 'red',
     i: 0,
+    idx: 0,
     hasRead: true,
     news: [{
       title: 'title',
       content: '内容内容内容内容',
       createDate: '1',
-      hasRead: true
+      hasRead: true,
+      hasReceive: true
     }, {
       title: 'title',
       content: '内容内容内容内容',
       createDate: '1',
-      hasRead: true
+      hasRead: true,
+      hasReceive: false
     }, {
       title: 'title',
       content: '内容内容内容内容',
       createDate: '1',
-      hasRead: true
+      hasRead: true,
+      hasReceive: false
     }, {
       title: 'title',
       content: '内容内容内容内容',
       createDate: '1',
-      hasRead: true
+      hasRead: true,
+      hasReceive: false
     }, , {
       title: 'title',
       content: '内容内容内容内容',
       createDate: '1',
-      hasRead: true
+      hasRead: true,
+      hasReceive: false
     }, , {
       title: 'title',
       content: '内容内容内容内容',
       createDate: '1',
-      hasRead: true
+      hasRead: true,
+      hasReceive: false
     }, , {
       title: 'title',
       content: '内容内容内容内容',
       createDate: '1',
-      hasRead: true
+      hasRead: true,
+      hasReceive: false
     }, , {
       title: 'title',
       content: '内容内容内容内容',
       createDate: '1',
-      hasRead: true
+      hasRead: true,
+      hasReceive: false
     }]
   },
 
@@ -120,18 +131,70 @@ Page({
   },
   // 删除消息
   deleteNews: function (event) {
-    let idx = event.currentTarget.dataset.deleteidx
-    console.log(event.currentTarget.dataset.deleteidx);
-    this.data.news[idx].hasRead = false;
+    let dataset = event.currentTarget.dataset;
+    let idx = this.idx = dataset.deleteidx;
+    let receivestatus = dataset.receivestatus;
+    if (this.hasReceive(receivestatus)) {
+      this.deleteSure()
+    } else {
+      this.setData({
+        showReceive: false,
+        showWarning: true
+      })
+    }
+  },
+  /**
+   * 判断是否有未领取的奖品
+   */
+  hasReceive: function (receivestatus) {
+    return receivestatus;
+  },
+  closeWaring: function () {
+    this.setData({
+      showWarning: false
+    });
+  },
+  deleteSure: function () {
+    this.data.news[this.idx].hasRead = false;
     this.setData({
       news: this.data.news
     });
+    this.closeWaring();
     wx.showToast({
       title: '删除成功',
-    })
+    });
   },
+  readNews: function(event) {
+    this.setData({
+      showReceive: true
+    });
+    let dataset = event.currentTarget.dataset;
+    let idx = this.idx = dataset.idx;
+  },
+  closeReward: function() {
+    this.setData({
+      showReceive: false
+    });
+  },
+  clickReceive: function() {
+    this.showLoading('加载中');
+    setTimeout(() => {
+      wx.hideLoading();
+      wx.showToast({
+        title: '领取成功',
+      })
+      this.setData({
+        showReceive: false
+      });
+    }, 500);
+  },
+  showLoading: function(title) {
+    wx.showLoading({
+      title: title,
+    })
+  }
   // 请求loading
-  
+
   // 返回上一页
   // navigateBack: function() {
   //   wx.navigateBack({

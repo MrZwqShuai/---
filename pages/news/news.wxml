@@ -1,6 +1,6 @@
 <!--pages/news/news.wxml-->
 <view class='news-container'>
-  <view class='mail' wx:if="{{item.hasRead}}" wx:for="{{news}}">
+  <view class='mail' wx:if="{{item.hasRead}}" wx:for="{{news}}" bindtap='readNews'  data-idx='{{index}}'>
     <scroll-view scroll-x="true" class='mail-scroll' scroll-with-animation="false">
       <view class='main-body'>
         <view>
@@ -15,7 +15,24 @@
         </view>
         <image src='/images/close-message.png' mode='widthFix' class='icon-message'></image>
       </view>
-      <view class='delete-btn' bindtap="deleteNews" data-deleteIdx='{{index}}'>删除</view>
+      <view class='delete-btn' bindtap="deleteNews" data-deleteIdx='{{index}}' data-receiveStatus="{{item.hasReceive}}">删除</view>
     </scroll-view>
+  </view>
+  <view class='popup-receive' wx:if="{{showReceive}}">
+  <view class='receive-img-con'>
+  <image src="/images/receive.png" mode='widthFix' class='receive-img'></image>
+  <text class='title'>消息标题</text>
+  <text class='reward'>奖品的描述奖品的描述奖品的描述</text>
+  <view class='click-receive' bindtap='clickReceive'></view>
+  <view class='close-reward' bindtap='closeReward'></view>
+  </view>
+  </view>
+  <view class='popup-warning' wx:if="{{showWarning}}">
+  <view class='warning-img-con'>
+  <image src="/images/warn.png" mode='widthFix' class='warning-img'></image>
+  <view class='close' bindtap='closeWaring'></view>
+  <view class='cancel' bindtap='closeWaring'></view>
+  <view class='delete-sure' bindtap='deleteSure'></view>
+  </view>
   </view>
 </view>
