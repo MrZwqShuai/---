@@ -1,8 +1,8 @@
 <!--pages/news/news.wxml-->
 <view class='news-container'>
-  <view class='mail' wx:if="{{item.hasRead}}" wx:for="{{news}}" bindtap='readNews'  data-idx='{{index}}'>
+  <view class='mail' wx:if="{{item.hasRead}}" wx:for="{{news}}">
     <scroll-view scroll-x="true" class='mail-scroll' scroll-with-animation="false">
-      <view class='main-body'>
+      <view class='main-body'  bindtap='readNews'  data-idx='{{index}}'>
         <view>
           <image src='http://5b0988e595225.cdn.sohucs.com/images/20180227/fc23d13f015f4b9198c2021021f834c8.jpeg' class='avator'></image>
         </view>
