@@ -1,2 +1,9 @@
 <!--pages/sign/sign.wxml-->
-<text>每日签到</text>
+<view class='sign-wrap'>
+<view class='top-banner'>
+<image src='/images/sign-banner.png' mode='widthFix'></image></view>
+<view class='scrolling-screen'>
+<image src='/images/ribbon01.png' mode='widthFix'></image>
+<text class='sign-frequency'>已连续签到5天</text>
+</view>
+</view>

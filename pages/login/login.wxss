@@ -36,6 +36,7 @@
 }
 .vcode-input-box{
   display: flex;
+  width: 260rpx;
   justify-content: center;
   align-items: center;
   border-radius: 10rpx;
@@ -84,7 +85,7 @@
   font-size: 24rpx;
 }
 .btn-code{
-  width:240rpx;
+  width:211rpx;
   height: 70rpx;
   line-height: 70rpx;
   background-color: #79000d;

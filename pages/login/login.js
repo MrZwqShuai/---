@@ -1,4 +1,5 @@
 import util from '../../utils/util.js'
+const app = getApp();
 // pages/login/login.js
 Page({
 

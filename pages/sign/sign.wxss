@@ -1,1 +1,19 @@
 /* pages/sign/sign.wxss */
+
+.top-banner {
+  width: 100%;
+  height: 557rpx;
+}
+
+.scrolling-screen {
+  position: relative;
+}
+
+.sign-frequency {
+  position: absolute;
+  top: 10rpx;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: Px(37);
+  color: #79000d;
+}

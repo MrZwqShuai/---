@@ -10,6 +10,13 @@ App({
     wx.login({
       success: res => {
         // 发送 res.code 到后台换取 openId, sessionKey, unionId
+        console.log(res, '-0---')
+        let code = res.code;
+        if(res.code) {
+        
+        } else {
+          console.log('获取用户登录信息失败' + res.errMsg);
+        }
       }
     })
     // 获取用户信息

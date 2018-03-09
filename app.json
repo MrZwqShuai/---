@@ -1,13 +1,13 @@
 {
   "pages": [
+    "pages/sign/sign",
+    "pages/login/login",
     "pages/index/index",
     "pages/news/news",
-    "pages/login/login",
     "pages/member/member",
     "pages/mall/mall",
     "pages/honor/honor",
     "pages/logs/logs",
-    "pages/sign/sign",
     "pages/record/record"
   ],
   "window": {
