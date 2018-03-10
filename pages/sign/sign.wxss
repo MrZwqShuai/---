@@ -1,12 +1,22 @@
 /* pages/sign/sign.wxss */
-
+.sign-wrap{
+  width: 100%;
+  background-color: #79000d;
+}
 .top-banner {
   width: 100%;
   height: 557rpx;
 }
+.top-banner-img{
+  width: 100%;
+}
 
 .scrolling-screen {
   position: relative;
+  margin-top: -40rpx;
+}
+.scrolling-screen-img{
+  width: 100%;
 }
 
 .sign-frequency {
@@ -16,4 +26,34 @@
   transform: translateX(-50%);
   font-size: Px(37);
   color: #79000d;
+}
+/* 滚动喇叭 */
+.bell-container .bell-box{
+  display: flex;
+  align-items: center;
+  width: 533.7rpx;
+  height: 64.74rpx;
+  font-size: 28rpx;
+  border-radius: 10rpx;
+  border: 1rpx solid #110607;
+  color: #2d1f0c;
+  background: linear-gradient(to left, #a0632b, #fffe84, #a0632b);
+}
+.bell-box-bg{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 545.7rpx;
+  height: 76.74rpx;
+  margin: 10rpx auto 0;
+  border-radius: 10rpx;
+  background-color: #a01f2d;
+}
+.bell-icon{
+  width: 58.1rpx;
+  height: 44.8rpx;
+  margin-left: 15rpx;
+}
+.bell-content{
+  margin-left: 35.6rpx;
 }

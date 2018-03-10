@@ -1,9 +1,17 @@
 <!--pages/sign/sign.wxml-->
 <view class='sign-wrap'>
 <view class='top-banner'>
-<image src='/images/sign-banner.png' mode='widthFix'></image></view>
+<image src='/images/sign-banner.png' mode='widthFix' class='top-banner-img'></image></view>
 <view class='scrolling-screen'>
-<image src='/images/ribbon01.png' mode='widthFix'></image>
+<image src='/images/ribbon01.png' mode='widthFix' class='scrolling-screen-img'></image>
 <text class='sign-frequency'>已连续签到5天</text>
+</view>
+<view class='bell-container'>
+<view class='bell-box-bg'>
+<view class='bell-box'>
+<image src='/images/bell.png' class='bell-icon' mode='widthFix'></image>
+<text class='bell-content'>恭喜*****获得*****</text>
+</view>
+</view>
 </view>
 </view>

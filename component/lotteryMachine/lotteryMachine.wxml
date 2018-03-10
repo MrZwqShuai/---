@@ -1,0 +1,4 @@
+<!--component/lotteryMachine/lotteryMachine.wxml-->
+<view class='lottery-container'>
+<image src='/images/lottery.png'></image>
+</view>
