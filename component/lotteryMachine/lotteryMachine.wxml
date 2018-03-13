@@ -1,4 +1,11 @@
 <!--component/lotteryMachine/lotteryMachine.wxml-->
 <view class='lottery-container'>
-<image src='/images/lottery.png'></image>
+  <image src='/images/lottery.png' class='lottery-bg' mode='scaleToFill'></image>
+  <view class='lottery-title'>
+    <text class='lottery-t-text'>全新见面礼 中奖人人有</text>
+  </view>
+  <text class='lottery-chance'>您今天还剩一次抽奖机会</text>
+  <view class='lottery-main'>
+    <view class="lottery-item {{index == selectedIdx && index !==4 ? 'active': ''}}" wx:for="{{lottery}}" wx:key="*this" bindtap='_play' data-playIdx='{{index}}'></view>
+  </view>
 </view>
