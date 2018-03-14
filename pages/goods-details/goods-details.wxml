@@ -1,0 +1,6 @@
+<!--pages/goods-details/goods-details.wxml-->
+<view class='goods-details-container'>
+<view class='goods-top-container'>
+<image src='/images/' mode="widthFix"></image>
+</view>
+</view>
