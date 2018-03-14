@@ -41,7 +41,7 @@
     <view class='exchange-child-box'>
       <view class='exchange-item' wx:for="{{rewards}}" wx:key="*this">
         <image mode="scaleToFill" class='exchange-child-img' src="{{item.img}}"></image>
-        <text class='exchange-child-explain'> </text>
+        <text class='exchange-child-explain' bindtap='goDetails'> </text>
       </view>
     </view>
   </view>

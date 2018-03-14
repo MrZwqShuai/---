@@ -1,1 +1,71 @@
 /* pages/goods-details/goods-details.wxss */
+
+.top-banner, .footer-banner {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.goods-reminder {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 85.2rpx;
+  text-align: center;
+  background-color: #263457;
+}
+
+.reminder-Hz, .reminder-En {
+  color: #fff;
+}
+
+.reminder-Hz {
+  font-size: 42rpx;
+}
+
+.reminder-En {
+  font-size: 18.6rpx;
+}
+
+.goods-rank-container {
+  position: relative;
+}
+
+.goods-needs-rank, .goods-convert {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50%;
+  height: 85.2rpx;
+   top: -46rpx; 
+  text-align: center;
+  border-radius: 20rpx;
+  background-color: #ededed;
+  box-shadow: 1rpx 4rpx 4rpx #c5c9c9;
+  border-bottom: 4rpx solid #c5c9c9;
+}
+
+.rank, .convert {
+  font-size: 30rpx;
+}
+
+.convert{
+  display: block;
+  width: 90%;
+  height: 75%;
+  line-height: 63.9rpx;
+  background-color: #fac53b;
+}
+
+.goods-integ {
+  color: #e4007f;
+}
+
+.goods-needs-rank {
+  left: 0;
+}
+
+.goods-convert {
+  right: 0;
+}

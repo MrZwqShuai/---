@@ -1,6 +1,23 @@
 <!--pages/goods-details/goods-details.wxml-->
 <view class='goods-details-container'>
 <view class='goods-top-container'>
-<image src='/images/' mode="widthFix"></image>
+<image src='/images/details-top.jpg' mode="widthFix" class='top-banner'></image>
+<view class='goods-rank-container'>
+<view class='goods-needs-rank'>
+<text class='rank'>当前积分: <text class='rank goods-integ'>{{integration}}</text></text>
+</view>
+<view class='goods-convert'>
+<text class='convert' bindtap='convert'>立即兑换</text>
+</view>
+<image src='/images/xin.jpg' mode="widthFix" class='top-banner'></image>
+</view>
+<image src='/images/details-step.jpg' mode="widthFix" class='top-banner'></image>
+</view>
+<view class='goods-reminder'>
+<text class='reminder-Hz'>温馨提示</text>
+<text class='reminder-En'>warmth warning</text>
+</view>
+<view class='goods-footer'>
+<image src='/images/details-info.jpg' mode="widthFix" class='footer-banner'></image>
 </view>
 </view>

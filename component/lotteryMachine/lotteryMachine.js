@@ -50,23 +50,26 @@ Component({
    */
   methods: {
     _lotterymainFn() {
-      let timer = this._lotteryTimer(100)
+      let timer = this._lotteryTimer(100, 0)
       let clearTimer = setTimeout(() => {
         this._clearTimer(timer);
         clearTimeout(clearTimer);
         console.log(this.data.selectedIdx);
-        this._lotteryTimer(500)
+        let clearTimer2 = this._lotteryTimer(500, this.data.selectedIdx);
+        setTimeout(() => {
+          clearTimeout(clearTimer2);
+        }, 1500);
       }, this._randomTime());
     },
     _lotteryTimer(speed, lotteryIdx) {
-      let i = 0;
+      lotteryIdx = lotteryIdx + 1;
       let timer = setInterval(() => {
         this.setData({
-          selectedIdx: this.data.lotteryStruct[i]
+          selectedIdx: this.data.lotteryStruct[lotteryIdx]
         });
-        i++
-        if (i >= 9) {
-          i = 1;
+        lotteryIdx++
+        if (lotteryIdx >= 9) {
+          lotteryIdx = 1;
         }
       }, speed);
       return timer;

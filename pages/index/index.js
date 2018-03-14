@@ -14,11 +14,11 @@ Page({
       url: '/images/nav01.png',
       title: '段位说明'
     }, {
-        page: '../member/member',
+      page: '../member/member',
       url: '/images/nav02.png',
       title: '我的背包'
     }, {
-        page: '../record/record',
+      page: '../record/record',
       url: '/images/nav03.png',
       title: '消费记录'
     }, {
@@ -30,7 +30,7 @@ Page({
       url: '/images/nav05.png',
       title: '每日任务'
     }, {
-        page: '../news/news',
+      page: '../news/news',
       url: '/images/nav06.png',
       title: '会员消息'
     }, {
@@ -119,7 +119,19 @@ Page({
    * 兑换礼品
    */
   exchange: function () {
-    console.log('兑换礼品');
+    wx.navigateTo({
+      url: '../mall/mall',
+      complete: function () {
+      }
+    })
+  },
+  /**
+   * 商品详情
+   */
+  goDetails: function () {
+    wx.navigateTo({
+      url: '../goods-details/goods-details',
+    });
   },
   // 导航
   navigate(event) {

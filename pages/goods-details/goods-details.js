@@ -5,7 +5,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-  
+    integration: 99
   },
 
   /**
@@ -62,5 +62,16 @@ Page({
    */
   onShareAppMessage: function () {
   
+  },
+  convert() {
+    wx.showLoading({
+      title: '加载中',
+    });
+    setTimeout(() => {
+      wx.showToast({
+        title: '兑换成功',
+      });
+      wx.hideLoading();
+    }, 500);
   }
 })
