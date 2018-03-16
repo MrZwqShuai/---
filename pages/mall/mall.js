@@ -9,9 +9,9 @@ Page({
    */
   data: {
     pageNum: 1,
-    pageSize:10,
+    pageSize: 4,
     isHavaPage: true,
-    coupons: [{ 
+    coupons: [{
       cash: 10,
       couponScore: 1000
     }, {
@@ -21,14 +21,16 @@ Page({
       cash: 100,
       couponScore: 10000
     }],
-    goods: []
+    goods: [],
+    imgUrl: imgUrl,
+    scrollLimit: true
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-  
+
   },
 
   /**
@@ -36,96 +38,119 @@ Page({
    */
   onReady: function () {
     this.setData({
-        pageNum: 1
+      pageNum: 1
     })
-    this.getIntegralGoods();
+    this.getIntegralGoods(this.data.pageNum);
   },
 
   // 获取首页展示的积分商品
-  getIntegralGoods: function () {
-    var that = this;
+  getIntegralGoods: function (pageNum) {
+    this.data.scrollLimit = false
+    wx.showLoading({
+      title: '加载中',
+    })
+    console.log(888)
     wx.request({
-      url: API + '/ezShop/services/integral/integralGoods?pageNum=' + that.data.pageNum + '&pageSize=' + that.data.pageSize, //仅为示例，并非真实的接口地址
+      url: API + '/ezShop/services/integral/integralGoods?pageNum=' + pageNum + '&pageSize=' + this.data.pageSize, //仅为示例，并非真实的接口地址
       //data: {},
       method: 'POST',
       header: {
         'content-type': 'application/json' // 默认值
       },
-      success: function (res) {
-        if (res.data.datas == null ){
-          that.setData({
-            isHavaPage: false
-          })
-          that.toTostIsNull();
-          return;
-        }
-        var listGoods = that.data.goods;
-        for (var index in res.data.datas) {
-          res.data.datas[index].imgUrl = imgUrl + res.data.datas[index].imgUrl;
-          listGoods.push(res.data.datas[index]);
-        }
+      success: (res) => {
+        // if (res.data.datas == null) {
+        //   this.setData({
+        //     isHavaPage: false
+        //   })
+        //   this.toTostIsNull();
+        //   return;
+        // }
         //给页面的积分商品赋值
-        that.setData({
-          goods: listGoods
-        })
+        if (res.data.stateCode == '0000') {
+          wx.hideLoading();
+          let addGoods = this.data.goods.concat(res.data.datas);
+          this.setData({
+            goods: addGoods
+          });
+          this.data.pageNum++;
+          this.data.scrollLimit = true
+        } else if (res.data.stateCode == '409') {
+          // 数据加载完成
+          wx.showToast({
+            title: res.data.errMsg,
+          });
+        } else {
+          wx.hideLoading();
+          wx.showLoading({
+            title: res.data.errMsg
+          });
+        }
+      },
+      fail: (e) => {
+        wx.hideLoading();
+        console.log('读取接口失败' + e.message);
       }
     })
   },
-
+  loadmore() {
+    if (this.data.scrollLimit) {
+      this.getIntegralGoods(this.data.pageNum);
+    }
+  },
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-  
+
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
   onHide: function () {
-  
+
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-  
+
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function () {
-    this.setData({
-      pageNum: 1,
-      goods:[]
-    })
-    this.getIntegralGoods();
-    wx.stopPullDownRefresh();
-  },
+  // onPullDownRefresh: function () {
+  //   this.setData({
+  //     pageNum: 1,
+  //     goods:[]
+  //   })
+  //   this.getIntegralGoods();
+  //   wx.stopPullDownRefresh();
+  // },
 
-  toTostIsNull:function(){
-    wx.showLoading({
-      title: '已经到底了',
-      icon: 'none',
-      duration: 1000,
-    })
-  },
+  // toTostIsNull:function(){
+  //   wx.showLoading({
+  //     title: '已经到底了',
+  //     icon: 'none',
+  //     duration: 1000,
+  //   })
+  // },
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function () {
-    if (!this.data.isHavaPage){
-      this.toTostIsNull();
-      return ;
-    }
-    var num = this.data.pageNum + 1;
-    this.setData({
-      pageNum: num
-    })
-    this.getIntegralGoods();
-  },
+  // onReachBottom: function () {
+  //   if (!this.data.isHavaPage){
+  //     this.toTostIsNull();
+  //     return ;
+  //   }
+  //   var num = this.data.pageNum + 1;
+  //   this.setData({
+  //     pageNum: num
+  //   })
+  //   this.getIntegralGoods();
+  // },
   /**
      * 转到详情
      */
@@ -141,6 +166,6 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
-  
+
   }
 })

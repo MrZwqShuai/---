@@ -20,7 +20,7 @@
       <scroll-view scroll-y="true" class='scroll-body' style='height: 100%;' bindscrolltolower="loadmore" scroll-with-animation="true">
         <view class="scroll-view-item bc_green">
           <view class='goods' wx:for="{{goods}}" wx:key="{{*this}}">
-            <image src='{{item.imgUrl}}' class='goods-img'></image>
+            <image src='{{imgUrl}}{{item.imgUrl}}' class='goods-img'></image>
             <text class='goods-explain'>{{item.ig_goods_name}}</text>
             <view class='exchange-column'>
               <text class='fragment-num'>{{item.ig_goods_integral}}积分</text>
