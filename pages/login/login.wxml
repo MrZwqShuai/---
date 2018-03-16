@@ -6,12 +6,12 @@
   <view class='login-form-container'>
     <view class="phone">
       <image class='phone-icon' src='/images/Phone.png' mode='widthFix'></image>
-      <input name="input" class="phone-inp" placeholder="手机号码" bindinput='phoneInput' cursor-spacing="10" maxlength='11' placeholder-class='login-inpplaceholder' />
+      <input name="input" class="phone-inp" placeholder="手机号码" cursor-spacing="10" maxlength='11' placeholder-class='login-inpplaceholder' />
     </view>
     <view class="vcode">
       <view class='vcode-input-box'>
         <image class='vcode-icon' src='/images/Lock.png' mode='widthFix'></image>
-        <input name="input" class="vcode-inp" placeholder="验证码" bindinput='vCodeInput' cursor-spacing="10" maxlength='4' placeholder-class='login-inpplaceholder' />
+        <input name="input" class="vcode-inp" placeholder="验证码" cursor-spacing="10" maxlength='11' placeholder-class='login-inpplaceholder' />
       </view>
       <button bindtap='sendCode' class='btn-code' size='default' disabled="{{isNeedDsiable}}">
         <text class='countdown' wx:if="{{!isCountDown}}">{{countdown}}</text>
