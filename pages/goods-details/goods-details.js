@@ -6,7 +6,10 @@ Page({
    * 页面的初始数据
    */
   data: {
-    integration: 99,
+    goods: {
+      integration: 99,
+      imageUrl: ''
+    },
     goodsId: undefined
   },
 
@@ -107,7 +110,8 @@ Page({
         if (data.stateCode == '0000') {
           let goodsDetail = data.datas[0];
           this.setData({
-            integration: goodsDetail.ig_goods_integral
+            'goods.integration': goodsDetail.ig_goods_integral,
+            'goods.imageUrl': goodsDetail.imgUrl
           });
         }
       },
