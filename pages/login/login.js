@@ -1,12 +1,13 @@
-import util from '../../utils/util.js'
 const app = getApp();
-// pages/login/login.js
+import util from '../../utils/util.js';
+var api = require('../../utils/api.js');
 Page({
-
   /**
    * 页面的初始数据
    */
   data: {
+    phoneNum: '',
+    vCode: '',
     loginValidate: {},
     countdown: '我要获取',
     validMessage: '请输入正确的手机号',
@@ -14,6 +15,17 @@ Page({
     isCountDown: false,
     // 发送验证码禁用点击
     isNeedDsiable: false
+  },
+
+  phoneInput: function (e) {
+    this.setData({
+      phoneNum: e.detail.value
+    })
+  },
+  vCodeInput: function (e) {
+    this.setData({
+      vCode: e.detail.value
+    })
   },
   // 显示发送验证码控件
   showSendCodeBtn() {
@@ -28,11 +40,19 @@ Page({
     });
   },
   sendCode: function () {
-    console.log(999);
-    this.setData({
-      isCountDown: true
-    });
-    this.countDown();
+    if (!this.loginValidate.isValid(this.data.phoneNum)) {
+      wx.showLoading({
+        title: '请输入正确的手机号',
+        icon: 'none',
+        duration: 1000,
+      })
+    }else{
+      this.sendVCode();
+      this.setData({
+        isCountDown: true
+      });
+      this.countDown();
+    }
   },
   countDown: function () {
     this.hideSendCodeBtn();
@@ -41,7 +61,6 @@ Page({
       this.setData({
         times: this.data.times
       });
-      console.log(this.data.times);
       if (this.data.times <= 0) {
         clearInterval(timer);
         this.setData({
@@ -52,20 +71,99 @@ Page({
       }
     }, 1000);
   },
+  sendVCode: function () {
+    var session_id = wx.getStorageSync('J_SESSID');//本地取存储的sessionID
+    wx.request({
+      url: api.url + '/ezShop/services/login/sendVCode?mobile=' + this.data.phoneNum,
+      method: 'GET',
+      header: {
+        'content-type': 'application/json', // 默认值
+        'Cookie': 'JSESSIONID=' + session_id
+      },
+      success: function (res) {
+        if (res.data.stateCode == '0000') {
+          wx.showLoading({
+            title: '发送成功',
+            icon: 'none',
+            duration: 1000,
+          })
+        } else {
+          wx.showLoading({
+            title: res.data.errMsg,
+            icon: 'none',
+            duration: 1000,
+          })
+        }
+      }
+    })
+  },
   /**
    * 登录
    */
-  login: function (phoneNum) {
-    if (!this.loginValidate.isValid(phoneNum)) {
+  login: function () {
+    if (!this.loginValidate.isValid(this.data.phoneNum)) {
       wx.showLoading({
         title: '请输入正确的手机号',
         icon: 'none',
-        duration: 1000
+        duration: 1000,
       })
+    } else if ('' == this.data.vCode) {
+      wx.showLoading({
+        title: '请输入手机验证码',
+        icon: 'none',
+        duration: 1000,
+      })
+    } else {
+      this.loginByMobile(this.data.phoneNum, this.data.vCode);
     }
-    // 登录跳转
-    wx.navigateTo({
-      url: '../index/index',
+  },
+  loginByMobile: function (mobile, vCode) {
+    var that =this;
+    var session_id = wx.getStorageSync('J_SESSID');
+    // 登录
+    wx.login({
+      success: res => {
+        wx.request({
+          url: api.url + '/ezShop/services/login/loginByMobile?wxCode=' + res.code + '&mobile=' + mobile + '&vCode=' + vCode,
+          method: 'GET',
+          header: {
+            'content-type': 'application/json', // 默认值
+            'Cookie': 'JSESSIONID=' + session_id
+          },
+          success: function (res) {
+            if (res.data.stateCode == '0000') {
+              that.setData({
+                isCountDown: false,
+                times:0
+              });
+              that.showSendCodeBtn();
+              if (!app.globalData.userInfo) {
+                app.globalData.userInfo.points = res.data.datas.integral
+                app.globalData.userInfo.rank = res.data.datas.rank
+                app.globalData.userInfo.fragment = res.data.datas.fragment
+                app.globalData.userInfo.userId = res.data.datas.userId
+                // 跳转到首页
+                wx.redirectTo({ url: '../index/index', })
+              }else{
+                setTimeout(function () {
+                  app.globalData.userInfo.points = res.data.datas.integral
+                  app.globalData.userInfo.rank = res.data.datas.rank
+                  app.globalData.userInfo.fragment = res.data.datas.fragment
+                  app.globalData.userInfo.userId = res.data.datas.userId
+                  // 跳转到首页
+                  wx.redirectTo({ url: '../index/index', })
+                }, 1000);
+              }
+            } else {
+              wx.showLoading({
+                title: res.data.errMsg,
+                icon: 'none',
+                duration: 1000,
+              })
+            }
+          }
+        })
+      }
     })
   },
 

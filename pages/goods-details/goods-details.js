@@ -1,38 +1,43 @@
 // pages/goods-details/goods-details.js
-const API = require("../../utils/api.js").url;
+const app = getApp()
+var api = require('../../utils/api.js');
 Page({
-
   /**
    * 页面的初始数据
    */
   data: {
-    goods: {
-      integration: 99,
-      imageUrl: ''
-    },
-    goodsId: undefined
+    integration: '',
+    goodsId: '',
+    imageUrl: '',
+    goods_integral: ''
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.data.goodsId = options.goodsId;
-    this.getIntegralGoodsById(this.data.goodsId);
+    this.setData({
+      points: options.points,
+      goodsId: options.id,
+      goods_integral: options.goods_integral
+    })
+    this.getIntegralGoodsById(options.id);
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-
+    
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    this.setData({
+      points: app.globalData.userInfo.points
+    })
   },
 
   /**
@@ -69,40 +74,44 @@ Page({
   onShareAppMessage: function () {
 
   },
-  exchangeGoods() {
-    wx.request({
-      url: API + '/ezShop/services/integral/exchangeGoods?',
-      data: {
-        id: this.data.goodsId,
-        // 暂时写死
-        userId: 1
-      },
-      success: ({ data }) => {
-        if (data.stateCode == '0000') {
-          console.log(data);
-          let goodsDetail = data.datas[0];
-          wx.hideLoading();
-        } else {
-          wx.showToast({
-            title: data.errMsg,
-          });
-        }
-      },
-      error: function (e) {
-        console.log('数据读取失败' + e.message);
-        wx.hideLoading();
-      }
-    });
-  },
   convert() {
-    wx.showLoading({
-      title: '加载中',
-    });
-    this.exchangeGoods();
+    var that = this;
+    //获取到商品id
+    var id = this.data.goodsId;
+    //获取用户id
+    var userId = app.globalData.userInfo.userId;
+    wx.request({
+      url: api.url + '/ezShop/services/integral/exchangeGoods?id=' + id + '&userId=' + userId,
+      method: 'GET',
+      header: {
+        'content-type': 'application/json' // 默认值
+      },
+      success: function (res) {
+        if (res.data.stateCode == '0000') {
+          wx.showLoading({
+            title: '兑换成功',
+            icon: 'none',
+            duration: 3000
+          });
+          app.globalData.userInfo.points = app.globalData.userInfo.points - that.data.goods_integral
+          setTimeout(function () {
+            wx.navigateTo({
+              url: '../backpack/backpack'
+            });
+          }, 1000);
+        } else {
+          wx.showLoading({
+            title: res.data.errMsg,
+            icon: 'none',
+            duration: 1000,
+          })
+        }
+      }
+    })
   },
   getIntegralGoodsById(goodsId) {
     wx.request({
-      url: API + '/ezShop/services/integral/getIntegralGoodsById',
+      url: api.url + '/ezShop/services/integral/getIntegralGoodsById',
       data: {
         id: goodsId
       },
@@ -110,8 +119,7 @@ Page({
         if (data.stateCode == '0000') {
           let goodsDetail = data.datas[0];
           this.setData({
-            'goods.integration': goodsDetail.ig_goods_integral,
-            'goods.imageUrl': goodsDetail.imgUrl
+            'imageUrl': goodsDetail.imgUrl
           });
         }
       },

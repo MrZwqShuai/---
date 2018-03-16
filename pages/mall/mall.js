@@ -1,12 +1,17 @@
 const API = require('../../utils/api.js').url;
+const imgUrl = require('../../utils/api.js').imgUrl;
+const app = getApp()
+var api = require('../../utils/api.js');
 // pages/mall/mall.js
 Page({
-
   /**
    * 页面的初始数据
    */
   data: {
-    coupons: [{
+    pageNum: 1,
+    pageSize:10,
+    isHavaPage: true,
+    coupons: [{ 
       cash: 10,
       couponScore: 1000
     }, {
@@ -16,39 +21,7 @@ Page({
       cash: 100,
       couponScore: 10000
     }],
-    goods: [{
-      img: '/images/nav01.png',
-      name: '贯日湿巾80片',
-      fragment: 900
-    }, {
-      img: '/images/nav02.png',
-      name: '麦卡纸抽',
-      fragment: 1600
-      }, {
-        img: '/images/nav03.png',
-        name: '麦卡纸抽',
-        fragment: 1000
-    }, {
-      img: '/images/nav04.png',
-      name: '麦卡纸尿裤',
-      fragment: 1500
-      }, {
-        img: '/images/nav01.png',
-        name: '贯日湿巾80片',
-        fragment: 900
-      }, {
-        img: '/images/nav02.png',
-        name: '麦卡纸抽',
-        fragment: 1600
-      }, {
-        img: '/images/nav03.png',
-        name: '麦卡纸抽',
-        fragment: 1000
-      }, {
-        img: '/images/nav04.png',
-        name: '麦卡纸尿裤',
-        fragment: 1500
-      }]
+    goods: []
   },
 
   /**
@@ -62,7 +35,41 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-  
+    this.setData({
+        pageNum: 1
+    })
+    this.getIntegralGoods();
+  },
+
+  // 获取首页展示的积分商品
+  getIntegralGoods: function () {
+    var that = this;
+    wx.request({
+      url: API + '/ezShop/services/integral/integralGoods?pageNum=' + that.data.pageNum + '&pageSize=' + that.data.pageSize, //仅为示例，并非真实的接口地址
+      //data: {},
+      method: 'POST',
+      header: {
+        'content-type': 'application/json' // 默认值
+      },
+      success: function (res) {
+        if (res.data.datas == null ){
+          that.setData({
+            isHavaPage: false
+          })
+          that.toTostIsNull();
+          return;
+        }
+        var listGoods = that.data.goods;
+        for (var index in res.data.datas) {
+          res.data.datas[index].imgUrl = imgUrl + res.data.datas[index].imgUrl;
+          listGoods.push(res.data.datas[index]);
+        }
+        //给页面的积分商品赋值
+        that.setData({
+          goods: listGoods
+        })
+      }
+    })
   },
 
   /**
@@ -90,48 +97,50 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-  
+    this.setData({
+      pageNum: 1,
+      goods:[]
+    })
+    this.getIntegralGoods();
+    wx.stopPullDownRefresh();
   },
 
+  toTostIsNull:function(){
+    wx.showLoading({
+      title: '已经到底了',
+      icon: 'none',
+      duration: 1000,
+    })
+  },
   /**
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-  
+    if (!this.data.isHavaPage){
+      this.toTostIsNull();
+      return ;
+    }
+    var num = this.data.pageNum + 1;
+    this.setData({
+      pageNum: num
+    })
+    this.getIntegralGoods();
   },
-
+  /**
+     * 转到详情
+     */
+  goToDetails: function (e) {
+    var id = e.currentTarget.id;
+    var goods_integral = e.currentTarget.dataset.integral;
+    var points = app.globalData.userInfo.points;
+    wx.navigateTo({
+      url: '../goods-details/goods-details?id=' + id + '&points=' + points + '&goods_integral=' + goods_integral
+    });
+  },
   /**
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
   
-  },
-  // 加载更多商品
-  loadmore: function() {
-    this.showLoading();
-    wx.request({
-      url: API + '/loadMore',
-      success: ({data}) => {
-        this.data.goods = this.data.goods.concat(data.data.goods);
-        this.setData({
-          goods: this.data.goods
-        });
-        wx.hideLoading();
-      },
-      fail: (error) => {
-        console.log(error.data.goods);
-        wx.hideLoading();
-        wx.showToast({
-          title: '数据加载错误(findUser)',
-          icon: "none",
-          duration: 2000
-        })
-      }
-    })
-  },
-  showLoading() {
-    wx.showLoading({
-      title: '加载中',
-    })
   }
 })

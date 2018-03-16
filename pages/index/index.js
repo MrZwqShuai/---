@@ -1,65 +1,17 @@
 //index.js
 //获取应用实例
-const API = require("../../utils/api.js").url;
 const app = getApp()
-
+var api = require('../../utils/api.js');
 Page({
   data: {
+    baseUrl: app.url,
     motto: 'Hello World',
     userInfo: {},
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
     // 首页导航
-    navs: [
-    //   {
-    //   page: '../news/news',
-    //   url: '/images/nav01.png',
-    //   title: '段位说明'
-    // }, {
-    //   page: '../member/member',
-    //   url: '/images/nav02.png',
-    //   title: '我的背包'
-    // }, {
-    //   page: '../record/record',
-    //   url: '/images/nav03.png',
-    //   title: '消费记录'
-    // }, {
-    //   page: '../sign/sign',
-    //   url: '/images/nav04.png',
-    //   title: '每日签到'
-    // }, {
-    //   page: '../honor/honor',
-    //   url: '/images/nav05.png',
-    //   title: '每日任务'
-    // }, {
-    //   page: '../news/news',
-    //   url: '/images/nav06.png',
-    //   title: '会员消息'
-    // }, {
-    //   page: '../honor/honor',
-    //   url: '/images/nav07.png',
-    //   title: '异业推介'
-    // }, {
-    //   page: '../mall/mall',
-    //   url: '/images/nav08.png',
-    //   title: '优妈商城'
-    // }
-    ],
-    rewards: [
-    //   {
-    //   img: '/images/nav01.png',
-    //   explain: '立即兑换'
-    // }, {
-    //   img: '/images/nav01.png',
-    //   explain: '立即兑换'
-    // }, {
-    //   img: '/images/nav01.png',
-    //   explain: '立即兑换'
-    // }, {
-    //   img: '/images/nav01.png',
-    //   explain: '立即兑换'
-    // }
-    ]
+    navs: [],
+    rewards: []
   },
   //事件处理函数
   bindViewTap: function () {
@@ -94,11 +46,19 @@ Page({
         }
       })
     }
-    this.getNavs();
-    this.integralGoods();
+  },
+  /**
+   * 生命周期函数--监听页面显示
+   */
+  onShow: function () {
+    this.setData({
+      userInfo: app.globalData.userInfo
+    })
   },
   onReady: function () {
     this.getUserInfo();
+    this.getIntegralGoods();
+    this.getNavs();
   },
   getUserInfo: function (e) {
     // console.log(e)
@@ -108,11 +68,10 @@ Page({
     //   hasUserInfo: true
     // })
     // 获取用户在贯日积分中的个人信息
-    this.getPoint();
+    //this.getPoint();
   },
   // 获取用户在贯日积分活动中的信息
   getPoint: function () {
-    console.log(this.data.userInfo);
     this.data.userInfo.rank = '';
     this.data.userInfo.fragment = '';
     this.data.userInfo.points = '';
@@ -122,23 +81,61 @@ Page({
       'userInfo.points': '10'
     });
   },
+  // 获取首页展示的积分商品
+  getIntegralGoods: function () {
+    var that = this;
+    wx.request({
+      url: api.url + '/ezShop/services/index/integralGoods', //仅为示例，并非真实的接口地址
+      //data: {},
+      method: 'POST',
+      header: {
+        'content-type': 'application/json' // 默认值
+      },
+      success: function (res) {
+        for (var index in res.data.datas) {
+          res.data.datas[index].imgUrl = api.imgUrl + res.data.datas[index].imgUrl;
+        }
+        //给页面的积分商品赋值
+        that.setData({
+          rewards: res.data.datas
+        })
+      }
+    })
+  },
+  // 获取首页导航
+  getNavs: function () {
+    var that = this;
+    wx.request({
+      url: api.url + '/ezShop/services/index/getNavs',
+      method: 'POST',
+      header: {
+        'content-type': 'application/json' // 默认值
+      },
+      success: function (res) {
+        //给页面的积分商品赋值
+        that.setData({
+          navs: res.data.datas
+        })
+      }
+    })
+  },
   /**
    * 兑换礼品
    */
   exchange: function () {
     wx.navigateTo({
-      url: '../mall/mall',
-      complete: function () {
-      }
+      url: '../mall/mall'
     })
   },
   /**
-   * 商品详情
-   */
-  goDetails: function (event) {
-    let goodsId = event.currentTarget.dataset.goodsid;
+    * 转到详情
+    */
+  goToDetails: function (e) {
+    var id = e.currentTarget.id;
+    var goods_integral = e.currentTarget.dataset.integral;
+    var points = app.globalData.userInfo.points;
     wx.navigateTo({
-      url: `../goods-details/goods-details?goodsId=${goodsId}`,
+      url: '../goods-details/goods-details?id=' + id + '&points=' + points + '&goods_integral=' + goods_integral
     });
   },
   // 导航
@@ -150,43 +147,4 @@ Page({
       }
     })
   },
-  /**
-   * 获取首页nav
-   */
-  getNavs() {
-    wx.request({
-      url: API + '/ezShop/services/index/getNavs',
-      method: 'POST',
-      success: ({data}) => {
-        if (data.stateCode == '0000') {
-          this.setData({
-            navs: data.datas
-          })
-        } else {
-          wx.showToast({
-            title: data.errMsg,
-          })
-        }
-      
-      }
-    })
-  },
-  integralGoods() {
-    wx.request({
-      url: API + '/ezShop/services/index/integralGoods',
-      method: 'POST',
-      success: ({ data }) => {
-        if (data.stateCode == '0000') {
-          this.setData({
-            rewards: data.datas
-          })
-        } else {
-          wx.showToast({
-            title: data.errMsg,
-          })
-        }
-
-      }
-    })
-  }
 })

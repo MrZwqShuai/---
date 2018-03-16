@@ -1,15 +1,16 @@
 {
   "pages": [
-    "pages/index/index",
-    "pages/goods-details/goods-details",
-    "pages/sign/sign",
     "pages/login/login",
+    "pages/index/index",
     "pages/news/news",
     "pages/member/member",
     "pages/mall/mall",
     "pages/honor/honor",
     "pages/logs/logs",
-    "pages/record/record"
+    "pages/sign/sign",
+    "pages/record/record",
+    "pages/goods-details/goods-details",
+    "pages/backpack/backpack"
   ],
   "window": {
     "backgroundTextStyle": "light",

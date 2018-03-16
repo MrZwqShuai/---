@@ -20,11 +20,11 @@
       <scroll-view scroll-y="true" class='scroll-body' style='height: 100%;' bindscrolltolower="loadmore" scroll-with-animation="true">
         <view class="scroll-view-item bc_green">
           <view class='goods' wx:for="{{goods}}" wx:key="{{*this}}">
-            <image src='{{item.img}}' class='goods-img'></image>
-            <text class='goods-explain'>{{item.name}}</text>
+            <image src='{{item.imgUrl}}' class='goods-img'></image>
+            <text class='goods-explain'>{{item.ig_goods_name}}</text>
             <view class='exchange-column'>
-              <text class='fragment-num'>{{item.fragment}}碎片</text>
-              <text class='exchange-btn'>点击兑换</text>
+              <text class='fragment-num'>{{item.ig_goods_integral}}积分</text>
+              <text class='exchange-btn' bindtap='goToDetails' id='{{item.id}}' data-integral='{{item.ig_goods_integral}}'>点击兑换</text>
             </view>
           </view>
         </view>

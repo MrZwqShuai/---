@@ -22,14 +22,14 @@
   <!-- </view> -->
   <!-- 首页导航s -->
   <view class="dashboard">
-  <view class='dashboard-position'>
-    <view wx:for-items="{{navs}}" wx:key="*this" class='dashboard-container' bindtap='navigate' data-page="{{item.page}}">
-      <view class='nav-container'>
-        <image src='{{item.url}}' mode='aspectFit' class='nav-img'></image>
-        <text class='nav-explain'>{{item.title}}</text>
+    <view class='dashboard-position'>
+      <view wx:for-items="{{navs}}" wx:key="*this" class='dashboard-container' bindtap='navigate' data-page="{{item.page}}">
+        <view class='nav-container'>
+          <image src='{{item.url}}' mode='aspectFit' class='nav-img'></image>
+          <text class='nav-explain'>{{item.title}}</text>
+        </view>
       </view>
     </view>
-  </view>
   </view>
   <!-- 首页导航e -->
   <!-- 兑换礼品s -->
@@ -40,22 +40,22 @@
     <image src="/images/exchange-content.png" mode='widthFix' class='exchange-img'></image>
     <view class='exchange-child-box'>
       <view class='exchange-item' wx:for="{{rewards}}" wx:key="*this">
-        <image mode="scaleToFill" class='exchange-child-img' src="http://www.youmahui.net:8083/ezShop{{item.imgUrl}}"></image>
-        <text class='exchange-child-explain' bindtap='goDetails' data-goodsid="{{item.id}}"> </text>
+        <image mode="scaleToFill" class='exchange-child-img' src="{{item.imgUrl}}"></image>
+        <text class='exchange-child-explain' bindtap='goToDetails' id='{{item.id}}' data-integral='{{item.ig_goods_integral}}'></text>
       </view>
     </view>
   </view>
   <!-- 兑换礼品e -->
   <!-- 首页底部s -->
   <view class='footer'>
-  <image mode='widthFix' src='/images/footer-banner.png' class='footer-bg'></image>
+    <image mode='widthFix' src='/images/footer-banner.png' class='footer-bg'></image>
   </view>
   <!-- 首页底部e -->
   <!-- 左右侧悬浮 -->
   <view class='slide1-decoration'>
-  <image src="/images/decoration1.png" mode='widthFix' class='slide2-img'></image>
+    <image src="/images/decoration1.png" mode='widthFix' class='slide2-img'></image>
   </view>
   <view class='slide2-decoration'>
-  <image src="/images/decoration2.png" mode='widthFix' class='slide2-img'></image>
+    <image src="/images/decoration2.png" mode='widthFix' class='slide2-img'></image>
   </view>
 </view>
