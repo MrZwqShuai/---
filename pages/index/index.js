@@ -1,5 +1,6 @@
 //index.js
 //获取应用实例
+const API = require("../../utils/api.js").url;
 const app = getApp()
 
 Page({
@@ -9,52 +10,56 @@ Page({
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
     // 首页导航
-    navs: [{
-      page: '../news/news',
-      url: '/images/nav01.png',
-      title: '段位说明'
-    }, {
-      page: '../member/member',
-      url: '/images/nav02.png',
-      title: '我的背包'
-    }, {
-      page: '../record/record',
-      url: '/images/nav03.png',
-      title: '消费记录'
-    }, {
-      page: '../sign/sign',
-      url: '/images/nav04.png',
-      title: '每日签到'
-    }, {
-      page: '../honor/honor',
-      url: '/images/nav05.png',
-      title: '每日任务'
-    }, {
-      page: '../news/news',
-      url: '/images/nav06.png',
-      title: '会员消息'
-    }, {
-      page: '../honor/honor',
-      url: '/images/nav07.png',
-      title: '异业推介'
-    }, {
-      page: '../mall/mall',
-      url: '/images/nav08.png',
-      title: '优妈商城'
-    }],
-    rewards: [{
-      img: '/images/nav01.png',
-      explain: '立即兑换'
-    }, {
-      img: '/images/nav01.png',
-      explain: '立即兑换'
-    }, {
-      img: '/images/nav01.png',
-      explain: '立即兑换'
-    }, {
-      img: '/images/nav01.png',
-      explain: '立即兑换'
-    },]
+    navs: [
+    //   {
+    //   page: '../news/news',
+    //   url: '/images/nav01.png',
+    //   title: '段位说明'
+    // }, {
+    //   page: '../member/member',
+    //   url: '/images/nav02.png',
+    //   title: '我的背包'
+    // }, {
+    //   page: '../record/record',
+    //   url: '/images/nav03.png',
+    //   title: '消费记录'
+    // }, {
+    //   page: '../sign/sign',
+    //   url: '/images/nav04.png',
+    //   title: '每日签到'
+    // }, {
+    //   page: '../honor/honor',
+    //   url: '/images/nav05.png',
+    //   title: '每日任务'
+    // }, {
+    //   page: '../news/news',
+    //   url: '/images/nav06.png',
+    //   title: '会员消息'
+    // }, {
+    //   page: '../honor/honor',
+    //   url: '/images/nav07.png',
+    //   title: '异业推介'
+    // }, {
+    //   page: '../mall/mall',
+    //   url: '/images/nav08.png',
+    //   title: '优妈商城'
+    // }
+    ],
+    rewards: [
+    //   {
+    //   img: '/images/nav01.png',
+    //   explain: '立即兑换'
+    // }, {
+    //   img: '/images/nav01.png',
+    //   explain: '立即兑换'
+    // }, {
+    //   img: '/images/nav01.png',
+    //   explain: '立即兑换'
+    // }, {
+    //   img: '/images/nav01.png',
+    //   explain: '立即兑换'
+    // }
+    ]
   },
   //事件处理函数
   bindViewTap: function () {
@@ -89,6 +94,8 @@ Page({
         }
       })
     }
+    this.getNavs();
+    this.integralGoods();
   },
   onReady: function () {
     this.getUserInfo();
@@ -128,9 +135,10 @@ Page({
   /**
    * 商品详情
    */
-  goDetails: function () {
+  goDetails: function (event) {
+    let goodsId = event.currentTarget.dataset.goodsid;
     wx.navigateTo({
-      url: '../goods-details/goods-details',
+      url: `../goods-details/goods-details?goodsId=${goodsId}`,
     });
   },
   // 导航
@@ -142,4 +150,43 @@ Page({
       }
     })
   },
+  /**
+   * 获取首页nav
+   */
+  getNavs() {
+    wx.request({
+      url: API + '/ezShop/services/index/getNavs',
+      method: 'POST',
+      success: ({data}) => {
+        if (data.stateCode == '0000') {
+          this.setData({
+            navs: data.datas
+          })
+        } else {
+          wx.showToast({
+            title: data.errMsg,
+          })
+        }
+      
+      }
+    })
+  },
+  integralGoods() {
+    wx.request({
+      url: API + '/ezShop/services/index/integralGoods',
+      method: 'POST',
+      success: ({ data }) => {
+        if (data.stateCode == '0000') {
+          this.setData({
+            rewards: data.datas
+          })
+        } else {
+          wx.showToast({
+            title: data.errMsg,
+          })
+        }
+
+      }
+    })
+  }
 })

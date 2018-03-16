@@ -40,8 +40,8 @@
     <image src="/images/exchange-content.png" mode='widthFix' class='exchange-img'></image>
     <view class='exchange-child-box'>
       <view class='exchange-item' wx:for="{{rewards}}" wx:key="*this">
-        <image mode="scaleToFill" class='exchange-child-img' src="{{item.img}}"></image>
-        <text class='exchange-child-explain' bindtap='goDetails'> </text>
+        <image mode="scaleToFill" class='exchange-child-img' src="{{item.imgUrl}}"></image>
+        <text class='exchange-child-explain' bindtap='goDetails' data-goodsid="{{item.id}}"> </text>
       </view>
     </view>
   </view>
