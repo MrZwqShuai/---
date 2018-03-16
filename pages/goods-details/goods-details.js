@@ -8,7 +8,7 @@ Page({
   data: {
     integration: '',
     goodsId: '',
-    imageUrl: '',
+    infoImgUrl: '',
     goods_integral: ''
   },
 
@@ -119,7 +119,7 @@ Page({
         if (data.stateCode == '0000') {
           let goodsDetail = data.datas[0];
           this.setData({
-            'imageUrl': goodsDetail.imgUrl
+            'infoImgUrl': api.imgUrl+goodsDetail.infoImgUrl
           });
         }
       },
