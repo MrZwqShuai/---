@@ -9,7 +9,12 @@ Page({
     integration: '',
     goodsId: '',
     infoImgUrl: '',
-    goods_integral: ''
+    goods_integral: '',
+    errorToast: {
+      show: false,
+      title: '',
+      duration: 0
+    }
   },
 
   /**
@@ -86,11 +91,11 @@ Page({
       header: {
         'content-type': 'application/json' // 默认值
       },
-      success: function (res) {
+      success: (res) => {
         if (res.data.stateCode == '0000') {
           wx.showLoading({
             title: '兑换成功',
-            icon: 'none',
+            icon: 'success',
             duration: 3000
           });
           app.globalData.userInfo.points = app.globalData.userInfo.points - that.data.goods_integral
@@ -100,11 +105,7 @@ Page({
             });
           }, 1000);
         } else {
-          wx.showLoading({
-            title: res.data.errMsg,
-            icon: 'none',
-            duration: 1000,
-          })
+          app.showErrorToast(this, res.data.errMsg, 1000);
         }
       }
     })

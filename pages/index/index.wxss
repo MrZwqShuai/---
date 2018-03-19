@@ -1,6 +1,9 @@
 /**index.wxss**/
 
 .container {
+  position: absolute;
+  left: 0;
+  top: 0;
   width: 100%;
   height: auto;
   background-color: #79000d;
@@ -17,7 +20,8 @@
 .userinfo-avatar {
   width: 128rpx;
   height: 128rpx;
-  margin-top: 95rpx;
+  margin-top: 96rpx;
+  margin-left: -10rpx;
   border-radius: 50%;
 }
 
@@ -40,9 +44,11 @@
 .userinfo-fragment {
   margin-right: 18px;
 }
-.userinfo-view{
+
+.userinfo-view {
   text-align: center;
 }
+
 .fragment-points-con {
   display: flex;
   justify-content: center;
@@ -66,14 +72,14 @@
   width: 613rpx;
   height: 390rpx;
 }
-.dashboard-position{
-  position:absolute;
-width:613rpx;
-top:29%;
-z-index:2;
-left:50%;
-transform:translate(-50%);
 
+.dashboard-position {
+  position: absolute;
+  width: 613rpx;
+   top: 24%; 
+  z-index: 2;
+  left: 50%;
+  transform: translate(-50%);
 }
 
 .dashboard-container {
@@ -114,7 +120,8 @@ transform:translate(-50%);
   width: 610rpx;
   margin-top: 10rpx;
 }
-.exchange-mg{
+
+.exchange-mg {
   width: 100%;
 }
 
@@ -160,31 +167,40 @@ transform:translate(-50%);
 }
 
 /* 兑换css e*/
+
 /* 底部s */
-.footer{
+
+.footer {
   width: 100%;
 }
-.footer-bg{
+
+.footer-bg {
   width: 100%;
 }
+
 /* 底部e */
+
 /* 悬浮装饰 */
-.slide1-decoration{
+
+.slide1-decoration {
   position: fixed;
   top: 45%;
   left: 0;
   width: 130rpx;
 }
-.slide1-img{
+
+.slide1-img {
   width: 100%;
 }
-.slide2-decoration{
+
+.slide2-decoration {
   position: fixed;
   top: 39%;
   right: 0;
   width: 130rpx;
   z-index: 1;
 }
-.slide2-img{
+
+.slide2-img {
   width: 100%;
 }

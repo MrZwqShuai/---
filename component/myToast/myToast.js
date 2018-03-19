@@ -11,12 +11,12 @@ Component({
   },
 
   ready: function () {
-    setTimeout(() => {
-      this.setData({
-        'error.show': false
-      });
-      this.triggerEvent('hide', false);
-    }, this.data.error.duration);
+    // setTimeout(() => {
+    //   this.setData({
+    //     'error.show': false
+    //   });
+    //   this.triggerEvent('hide', false);
+    // }, this.data.error.duration);
   },
   /**
    * 组件的初始数据

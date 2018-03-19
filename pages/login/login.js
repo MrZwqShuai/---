@@ -21,17 +21,12 @@ Page({
       duration: 0
     }
   },
-  hideToast: function (e) {
-    this.setData({
-      'errorToast.show': e.detail
-    });
-  },
-  phoneInput: function (e) {
+  phoneBlur: function (e) {
     this.setData({
       phoneNum: e.detail.value
     })
   },
-  vCodeInput: function (e) {
+  vcodeBlur: function (e) {
     this.setData({
       vCode: e.detail.value
     })
@@ -42,15 +37,6 @@ Page({
       isNeedDsiable: false
     });
   },
-  showErrorToast(title) {
-    this.setData({
-      errorToast: {
-        show: true,
-        title: title,
-        duration: 1000
-      }
-    });
-  },
   // 隐藏发送验证码控件
   hideSendCodeBtn() {
     this.setData({
@@ -59,8 +45,8 @@ Page({
   },
   sendCode: function () {
     if (!this.loginValidate.isValid(this.data.phoneNum)) {
-      this.showErrorToast('请输入正确的手机号');
-    }else{
+      app.showErrorToast(this, '请输入正确的手机号', 1000);
+    } else {
       this.sendVCode();
       this.setData({
         isCountDown: true
@@ -86,6 +72,7 @@ Page({
     }, 1000);
   },
   sendVCode: function () {
+    console.log(222);
     var session_id = wx.getStorageSync('J_SESSID');//本地取存储的sessionID
     wx.request({
       url: api.url + '/ezShop/services/login/sendVCode?mobile=' + this.data.phoneNum,
@@ -94,20 +81,18 @@ Page({
         'content-type': 'application/json', // 默认值
         'Cookie': 'JSESSIONID=' + session_id
       },
-      success: function (res) {
+      success: (res) => {
         if (res.data.stateCode == '0000') {
-          wx.showLoading({
+          wx.showToast({
             title: '发送成功',
-            icon: 'none',
             duration: 1000,
-          })
+          });
         } else {
-          wx.showLoading({
-            title: res.data.errMsg,
-            icon: 'none',
-            duration: 1000,
-          })
+          app.showErrorToast(this, res.data.errMsg, 1000);
         }
+      },
+      fail: function (e) {
+        app.showErrorToast(this, '数据读取错误(sendVCode)', 1000);
       }
     })
   },
@@ -116,15 +101,15 @@ Page({
    */
   login: function () {
     if (!this.loginValidate.isValid(this.data.phoneNum)) {
-      this.showErrorToast('请输入正确的手机号');
+      app.showErrorToast(this, '请输入正确的手机号', 1000);
     } else if ('' == this.data.vCode) {
-      this.showErrorToast('请输入手机验证码');
+      app.showErrorToast(this, '请输入手机验证码', 1000);
     } else {
       this.loginByMobile(this.data.phoneNum, this.data.vCode);
     }
   },
   loginByMobile: function (mobile, vCode) {
-    var that =this;
+    var that = this;
     var session_id = wx.getStorageSync('J_SESSID');
     // 登录
     wx.login({
@@ -136,11 +121,11 @@ Page({
             'content-type': 'application/json', // 默认值
             'Cookie': 'JSESSIONID=' + session_id
           },
-          success: function (res) {
+          success: (res) => {
             if (res.data.stateCode == '0000') {
               that.setData({
                 isCountDown: false,
-                times:0
+                times: 0
               });
               that.showSendCodeBtn();
               if (!app.globalData.userInfo) {
@@ -150,7 +135,7 @@ Page({
                 app.globalData.userInfo.userId = res.data.datas.userId
                 // 跳转到首页
                 wx.redirectTo({ url: '../index/index', })
-              }else{
+              } else {
                 setTimeout(function () {
                   app.globalData.userInfo.points = res.data.datas.integral
                   app.globalData.userInfo.rank = res.data.datas.rank
@@ -161,11 +146,7 @@ Page({
                 }, 1000);
               }
             } else {
-              wx.showLoading({
-                title: res.data.errMsg,
-                icon: 'none',
-                duration: 1000,
-              })
+              app.showErrorToast(this, res.data.errMsg, 1000);
             }
           }
         })

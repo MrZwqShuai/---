@@ -20,6 +20,9 @@ App({
             }
           })
         }
+      },
+      fail: e => {
+        console.log(e);
       }
     });
   },
@@ -43,38 +46,57 @@ App({
     // 登录
     wx.login({
       success: res => {
+        console.log(res);
         wx.request({
           url: api.url + '/ezShop/services/login/loginByCode?wxCode=' + res.code,
           method: 'GET',
           header: {
             'content-type': 'application/json' // 默认值
           },
-          success: function (res) {
-            if (!res.data.datas.isFirstLogin) {
+          success: ({data}) => {
+            console.log(data)
+            if (!data.datas.isFirstLogin) {
               if (!that.globalData.userInfo) {
                 setTimeout(function () {
                   // 跳转到首页
-                  that.loginSetUserInfo(res);
+                  that.loginSetUserInfo(data);
                   wx.redirectTo({ url: '../index/index', })
                 }, 1000);
               } else {
-                that.loginSetUserInfo(res);
+                that.loginSetUserInfo(data);
                 wx.redirectTo({ url: '../index/index', })
               }
             }
-            wx.setStorageSync('J_SESSID', res.data.datas.J_SESSID)
+            wx.setStorageSync('J_SESSID', data.datas.J_SESSID);
           }
         })
       }
     })
   },
-  loginSetUserInfo: function (res) {
-    this.globalData.userInfo.points = res.data.datas.integral
-    this.globalData.userInfo.rank = res.data.datas.rank
-    this.globalData.userInfo.fragment = res.data.datas.fragment
-    this.globalData.userInfo.userId = res.data.datas.userId
+  loginSetUserInfo: function (data) {
+    this.globalData.userInfo.points = data.datas.integral
+    this.globalData.userInfo.rank = data.datas.rank
+    this.globalData.userInfo.fragment = data.datas.fragment
+    this.globalData.userInfo.userId = data.datas.userId
   },
   globalData: {
     userInfo: null
-  }
+  },
+  showErrorToast(_this, title, duration) {
+    _this.setData({
+      errorToast: {
+        show: true,
+        title: title,
+        duration: duration
+      }
+    });
+    setTimeout(() => {
+      this.hideToast(_this);
+    }, duration);
+  },
+  hideToast: function (_this) {
+    _this.setData({
+      'errorToast.show': false
+    });
+  },
 })

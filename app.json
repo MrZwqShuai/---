@@ -1,6 +1,7 @@
 {
   "pages": [
     "pages/login/login",
+    "pages/record/record",
     "pages/index/index",
     "pages/sign/sign",
     "pages/mall/mall",
@@ -8,7 +9,6 @@
     "pages/member/member",
     "pages/honor/honor",
     "pages/logs/logs",
-    "pages/record/record",
     "pages/goods-details/goods-details",
     "pages/backpack/backpack"
   ],

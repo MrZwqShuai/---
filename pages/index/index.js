@@ -11,7 +11,12 @@ Page({
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
     // 首页导航
     navs: [],
-    rewards: []
+    rewards: [],
+    errorToast: {
+      show: false,
+      title: '',
+      duration: 0
+    }
   },
   //事件处理函数
   bindViewTap: function () {
@@ -59,6 +64,7 @@ Page({
     this.getUserInfo();
     this.getIntegralGoods();
     this.getNavs();
+    this.getExtensionNews();
   },
   getUserInfo: function (e) {
     // console.log(e)
@@ -116,6 +122,21 @@ Page({
         that.setData({
           navs: res.data.datas
         })
+      }
+    })
+  },
+  /**
+   * 获取推广消息
+   */
+  getExtensionNews: function () {
+    wx.request({
+      url: api.url + '/ezShop/services/index/getExtensionNews',
+      method: 'POST',
+      success: (res) => {
+        console.log(res);
+      },
+      fail: (e) => {
+        app.showErrorToast(this, '数据读取错误(getExtensionNews)', 1000);
       }
     })
   },

@@ -4,15 +4,15 @@
 <image src='{{infoImgUrl}}' mode="widthFix" class='top-banner'></image>
 <view class='goods-rank-container'>
 <view class='goods-needs-rank'>
-<text class='rank'>当前积分: <text class='rank goods-integ'>{{points}}</text></text>
+<text class='rank'>当前积分: <text class='rank goods-integ'>{{goods_integral}}</text></text>
 </view>
 <view class='goods-convert'>
 <text class='convert' bindtap='convert'>立即兑换</text>
 </view>
 </view>
 </view>
-<!-- <view class='goods-reminder'>
-<text class='reminder-Hz'>温馨提示</text>
-<text class='reminder-En'>warmth warning</text>
-</view> -->
+  <!-- 自定义弹窗  -->
+ <view class='toast'>
+  <toast wx:if="{{errorToast.show}}" error="{{errorToast}}"></toast>
+  </view>
 </view>

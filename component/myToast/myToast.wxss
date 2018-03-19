@@ -2,6 +2,8 @@
 
 .toast-container {
   position: fixed;
+  width: 256rpx;
+  height: 184rpx;
   top: 45%;
   left: 50%;
   transform: translate(-50%, -50%);
