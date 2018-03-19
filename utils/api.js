@@ -1,5 +1,5 @@
-const BASEURL = 'https://www.youmahui.net:8083';
-const IMGURL = 'https://www.youmahui.net:8083/ezShop';
+const BASEURL = 'https://www.youmahui.net';
+const IMGURL = 'https://www.youmahui.net/ezShop';
 module.exports = {
   url: BASEURL,
   imgUrl: IMGURL,
