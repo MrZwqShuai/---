@@ -4,17 +4,24 @@ Component({
    * 组件的属性列表
    */
   properties: {
-    message: {
-      type: String,
-      value: 'message'
+    error: {
+      type: Object,
+      value: {}
     }
   },
 
+  ready: function () {
+    setTimeout(() => {
+      this.setData({
+        'error.show': false
+      });
+      this.triggerEvent('hide', false);
+    }, this.data.error.duration);
+  },
   /**
    * 组件的初始数据
    */
   data: {
-    isHide: true
   },
 
   /**

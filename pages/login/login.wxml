@@ -21,7 +21,7 @@
     <button bindtap="login" class='login-btn'>我要登录</button>
   </view>
   <!-- 自定义弹窗  -->
-  <!-- <view class='toast'>
-  <toast message="validMessage"></toast>
-  </view> -->
+   <view class='toast'>
+  <toast wx:if="{{errorToast.show}}" error="{{errorToast}}" bindhide="hideToast"></toast>
+  </view>
 </view>
