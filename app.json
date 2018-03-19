@@ -1,13 +1,13 @@
 {
   "pages": [
-    "pages/mall/mall",
-    "pages/index/index",
     "pages/login/login",
+    "pages/sign/sign",
+    "pages/index/index",
+    "pages/mall/mall",
     "pages/news/news",
     "pages/member/member",
     "pages/honor/honor",
     "pages/logs/logs",
-    "pages/sign/sign",
     "pages/record/record",
     "pages/goods-details/goods-details",
     "pages/backpack/backpack"
