@@ -14,9 +14,18 @@ Page({
     times: 59,
     isCountDown: false,
     // 发送验证码禁用点击
-    isNeedDsiable: false
+    isNeedDsiable: false,
+    errorToast: {
+      show: false,
+      title: '',
+      duration: 0
+    }
   },
-
+  hideToast: function (e) {
+    this.setData({
+      'errorToast.show': e.detail
+    });
+  },
   phoneInput: function (e) {
     this.setData({
       phoneNum: e.detail.value
@@ -33,6 +42,15 @@ Page({
       isNeedDsiable: false
     });
   },
+  showErrorToast(title) {
+    this.setData({
+      errorToast: {
+        show: true,
+        title: title,
+        duration: 1000
+      }
+    });
+  },
   // 隐藏发送验证码控件
   hideSendCodeBtn() {
     this.setData({
@@ -41,11 +59,7 @@ Page({
   },
   sendCode: function () {
     if (!this.loginValidate.isValid(this.data.phoneNum)) {
-      wx.showLoading({
-        title: '请输入正确的手机号',
-        icon: 'none',
-        duration: 1000,
-      })
+      this.showErrorToast('请输入正确的手机号');
     }else{
       this.sendVCode();
       this.setData({
@@ -102,17 +116,9 @@ Page({
    */
   login: function () {
     if (!this.loginValidate.isValid(this.data.phoneNum)) {
-      wx.showLoading({
-        title: '请输入正确的手机号',
-        icon: 'none',
-        duration: 1000,
-      })
+      this.showErrorToast('请输入正确的手机号');
     } else if ('' == this.data.vCode) {
-      wx.showLoading({
-        title: '请输入手机验证码',
-        icon: 'none',
-        duration: 1000,
-      })
+      this.showErrorToast('请输入手机验证码');
     } else {
       this.loginByMobile(this.data.phoneNum, this.data.vCode);
     }
