@@ -4,7 +4,7 @@
 <image src='{{infoImgUrl}}' mode="widthFix" class='top-banner'></image>
 <view class='goods-rank-container'>
 <view class='goods-needs-rank'>
-<text class='rank'>当前积分: <text class='rank goods-integ'>{{goods_integral}}</text></text>
+<text class='rank'>当前积分: <text class='rank goods-integ'>{{points}}</text></text>
 </view>
 <view class='goods-convert'>
 <text class='convert' bindtap='convert'>立即兑换</text>

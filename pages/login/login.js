@@ -15,11 +15,6 @@ Page({
     isCountDown: false,
     // 发送验证码禁用点击
     isNeedDsiable: false,
-    errorToast: {
-      show: false,
-      title: '',
-      duration: 0
-    }
   },
   phoneBlur: function (e) {
     this.setData({
@@ -72,7 +67,6 @@ Page({
     }, 1000);
   },
   sendVCode: function () {
-    console.log(222);
     var session_id = wx.getStorageSync('J_SESSID');//本地取存储的sessionID
     wx.request({
       url: api.url + '/ezShop/services/login/sendVCode?mobile=' + this.data.phoneNum,
@@ -83,10 +77,7 @@ Page({
       },
       success: (res) => {
         if (res.data.stateCode == '0000') {
-          wx.showToast({
-            title: '发送成功',
-            duration: 1000,
-          });
+          app.showErrorToast(this, '发送成功', 1000);
         } else {
           app.showErrorToast(this, res.data.errMsg, 1000);
         }
