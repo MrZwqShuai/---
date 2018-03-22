@@ -44,6 +44,9 @@ App({
   loginByCode: function () {
     var that = this;
     // 登录
+    wx.showLoading({
+      title: '登录中',
+    })
     wx.login({
       success: res => {
         console.log(res);
@@ -57,16 +60,14 @@ App({
             console.log(data)
             if (!data.datas.isFirstLogin) {
               if (!that.globalData.userInfo) {
-                setTimeout(function () {
                   // 跳转到首页
                   that.loginSetUserInfo(data);
                   wx.redirectTo({ url: '../index/index', })
-                }, 1000);
               } else {
                 that.loginSetUserInfo(data);
                 wx.redirectTo({ url: '../index/index', })
               }
-            }
+            } 
             wx.setStorageSync('J_SESSID', data.datas.J_SESSID);
           }
         })
