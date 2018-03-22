@@ -1,5 +1,3 @@
-const API = require('../../utils/api.js').url;
-const imgUrl = require('../../utils/api.js').imgUrl;
 const app = getApp()
 var api = require('../../utils/api.js');
 // pages/mall/mall.js
@@ -22,7 +20,7 @@ Page({
       couponScore: 10000
     }],
     goods: [],
-    imgUrl: imgUrl,
+    imgUrl: api.imgUrl,
     scrollLimit: true
   },
 
@@ -49,9 +47,8 @@ Page({
     wx.showLoading({
       title: '加载中',
     })
-    console.log(888)
     wx.request({
-      url: API + '/ezShop/services/integral/integralGoods?pageNum=' + pageNum + '&pageSize=' + this.data.pageSize, //仅为示例，并非真实的接口地址
+      url: api.url + '/ezShop/services/integral/integralGoods?pageNum=' + pageNum + '&pageSize=' + this.data.pageSize, //仅为示例，并非真实的接口地址
       //data: {},
       method: 'POST',
       header: {

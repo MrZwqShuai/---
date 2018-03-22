@@ -40,7 +40,8 @@ Component({
       rewardImg: ''
     }],
     selectedIdx: null,
-    lotteryStruct: [0, 1, 2, 5, 8, 7, 6, 3, 0]
+    lotteryStruct: [0, 1, 2, 5, 8, 7, 6, 3, 0],
+    chance: 1
   },
   ready() {
     // this._lotterymainFn();
@@ -50,15 +51,18 @@ Component({
    */
   methods: {
     _lotterymainFn() {
-      let timer = this._lotteryTimer(100, 0)
+      let timer = this._lotteryTimer(90, 0)
       let clearTimer = setTimeout(() => {
         this._clearTimer(timer);
         clearTimeout(clearTimer);
-        console.log(this.data.selectedIdx);
-        let clearTimer2 = this._lotteryTimer(500, this.data.selectedIdx);
-        setTimeout(() => {
-          clearTimeout(clearTimer2);
-        }, 1500);
+        let selectedIdx = this.data.lotteryStruct.indexOf(this.data.selectedIdx)
+        if (selectedIdx !== -1) {
+          let clearTimer2 = this._lotteryTimer(400, selectedIdx);
+          setTimeout(() => {
+            clearTimeout(clearTimer2);
+            this._pause();
+          }, 2000);
+        }
       }, this._randomTime());
     },
     _lotteryTimer(speed, lotteryIdx) {
@@ -77,14 +81,26 @@ Component({
     _play(event) {
       let playIdx = event.currentTarget.dataset.playidx;
       if (playIdx === 4) {
-        this._lotterymainFn();
+        if (this.hasChance()) {
+          this._lotterymainFn();
+        } else {
+          wx.showToast({
+            title: '今日抽奖次数已用完',
+          })
+        }
       }
+    },
+    _pause() {
+      this.data.chance = 0;
+    },
+    hasChance() {
+      return this.data.chance;
     },
     _clearTimer(timer) {
       clearInterval(timer);
     },
     _randomTime() {
-      return Math.floor(Math.random() * 1000) + 2000
+      return Math.floor(Math.random() * 1000) + 3000
     }
   },
 })

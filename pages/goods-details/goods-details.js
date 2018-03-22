@@ -93,11 +93,7 @@ Page({
       },
       success: (res) => {
         if (res.data.stateCode == '0000') {
-          wx.showLoading({
-            title: '兑换成功',
-            icon: 'success',
-            duration: 3000
-          });
+          app.showErrorToast(this, '兑换成功', 1000)
           app.globalData.userInfo.points = app.globalData.userInfo.points - that.data.goods_integral
           setTimeout(function () {
             wx.navigateTo({

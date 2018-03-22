@@ -4,98 +4,53 @@ const app = getApp()
 var api = require('../../utils/api.js');
 Page({
   data: {
-    baseUrl: app.url,
-    motto: 'Hello World',
     userInfo: {},
-    hasUserInfo: false,
-    canIUse: wx.canIUse('button.open-type.getUserInfo'),
     // 首页导航
     navs: [],
     rewards: [],
-    errorToast: {
-      show: false,
-      title: '',
-      duration: 0
-    }
-  },
-  //事件处理函数
-  bindViewTap: function () {
-    wx.navigateTo({
-      url: '../logs/logs'
-    })
   },
   onLoad: function () {
-    if (app.globalData.userInfo) {
-      this.setData({
-        userInfo: app.globalData.userInfo,
-        hasUserInfo: true
-      })
-    } else if (this.data.canIUse) {
-      // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
-      // 所以此处加入 callback 以防止这种情况
-      app.userInfoReadyCallback = res => {
-        this.setData({
-          userInfo: res.userInfo,
-          hasUserInfo: true
-        })
-      }
-    } else {
-      // 在没有 open-type=getUserInfo 版本的兼容处理
-      wx.getUserInfo({
-        success: res => {
-          app.globalData.userInfo = res.userInfo
-          this.setData({
-            userInfo: res.userInfo,
-            hasUserInfo: true
+    //判断用户是否授权，并且获取用户信息
+    var that = this;
+    wx.getSetting({
+      success: res => {
+        if (res.authSetting['scope.userInfo']) {
+          that.loginByCode();
+        } else {
+          wx.authorize({
+            scope: 'scope.userInfo',
+            success() {
+              that.loginByCode();
+            }
           })
         }
-      })
-    }
+      }
+    });
   },
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    this.setData({
-      userInfo: app.globalData.userInfo
-    })
+    if (app.globalData.userInfo){
+      this.setData({
+        userInfo: app.globalData.userInfo
+      })
+    }
   },
-  onReady: function () {
-    this.getUserInfo();
-    this.getIntegralGoods();
-    this.getNavs();
-    this.getExtensionNews();
-  },
-  getUserInfo: function (e) {
-    // console.log(e)
-    // app.globalData.userInfo = e.detail.userInfo
-    // this.setData({
-    //   userInfo: e.detail.userInfo,
-    //   hasUserInfo: true
-    // })
-    // 获取用户在贯日积分中的个人信息
-    //this.getPoint();
-  },
-  // 获取用户在贯日积分活动中的信息
-  getPoint: function () {
-    this.data.userInfo.rank = '';
-    this.data.userInfo.fragment = '';
-    this.data.userInfo.points = '';
-    this.setData({
-      'userInfo.rank': '100',
-      'userInfo.fragment': '100',
-      'userInfo.points': '10'
-    });
+  //获取用户信息赋值到页面
+  getAppUserInfo: function () {
+      this.setData({
+        userInfo: app.globalData.userInfo
+      })
   },
   // 获取首页展示的积分商品
   getIntegralGoods: function () {
     var that = this;
     wx.request({
-      url: api.url + '/ezShop/services/index/integralGoods', //仅为示例，并非真实的接口地址
-      //data: {},
+      url: api.url + '/ezShop/services/index/integralGoods',
       method: 'POST',
       header: {
-        'content-type': 'application/json' // 默认值
+        'content-type': 'application/json'
       },
       success: function (res) {
         for (var index in res.data.datas) {
@@ -166,6 +121,63 @@ Page({
       url: pageUrl,
       complete: function () {
       }
+    })
+  },
+  getWxUserInfo: function () {
+    if (app.globalData.userInfo){
+      return;
+    }
+    var that = this;
+    // 已经授权，可以直接调用 getUserInfo 获取头像昵称，不会弹框
+    wx.getUserInfo({
+      success: res => {
+        app.globalData.userInfo = res.userInfo
+      }
+    })
+  },
+  loginSetUserInfo: function (data) {
+    app.globalData.userInfo.points = data.datas.integral
+    app.globalData.userInfo.rank = data.datas.rank
+    app.globalData.userInfo.fragment = data.datas.fragment
+    app.globalData.userInfo.userId = data.datas.userId
+    //获取用户信息
+    this.getAppUserInfo();
+    //获取首页展示的积分商品
+    this.getIntegralGoods();
+    //获取首页导航
+    this.getNavs();
+    //获取推广消息
+    this.getExtensionNews();
+  },
+  loginByCode: function () {
+    //获取微信的用户信息
+    this.getWxUserInfo();
+    var that = this;
+    // 登录
+    wx.login({
+      success: res => {
+        wx.request({
+          url: api.url + '/ezShop/services/login/loginByCode?wxCode=' + res.code,
+          method: 'GET',
+          header: {
+            'content-type': 'application/json' // 默认值
+          },
+          success: ({ data }) => {
+            if (!data.datas.isFirstLogin) {
+              that.loginSetUserInfo(data);
+            } else {
+              wx.redirectTo({ url: '../login/login', })
+            }
+            wx.setStorageSync('J_SESSID', data.datas.J_SESSID);
+          }
+        })
+      }
+    })
+  },
+  //点击头像事件
+  bindViewTap: function () {
+    wx.navigateTo({
+      url: '../logs/logs'
     })
   },
 })
