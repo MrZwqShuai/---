@@ -28,6 +28,7 @@
 }
 
 .toast-content-text {
+  text-align: center;
   font-size: 24rpx;
   color: #f44336;
 }

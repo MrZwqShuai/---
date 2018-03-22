@@ -66,6 +66,9 @@ Page({
   // 获取首页导航
   getNavs: function () {
     var that = this;
+    wx.showLoading({
+      title: '加载中',
+    })
     wx.request({
       url: api.url + '/ezShop/services/index/getNavs',
       method: 'POST',
@@ -76,7 +79,8 @@ Page({
         //给页面的积分商品赋值
         that.setData({
           navs: res.data.datas
-        })
+        });
+        wx.hideLoading();
       }
     })
   },

@@ -7,8 +7,8 @@
       <view class='search-icon-con'>
         <image src='/images/search-record.png' class='search-icon' mode='widthFix'></image>
       </view>
-      <input type='text' class='search-input' placeholder='输入商品名称或日期...'></input>
-      <button class='search-btn'>SEARCH</button>
+      <input type='text' class='search-input' placeholder='输入商品名称或日期...' bindblur="searchBlur"></input>
+      <button class='search-btn' bindtap='getConsRecordsByUserId'>SEARCH</button>
     </view>
   </view>
   <!-- 购买纪录s -->

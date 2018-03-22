@@ -1,7 +1,7 @@
 {
   "pages": [
-    "pages/sign/sign",
     "pages/index/index",
+    "pages/sign/sign",
     "pages/login/login",
     "pages/record/record",
     "pages/mall/mall",

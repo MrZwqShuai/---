@@ -1,50 +1,29 @@
 // component/lotteryMachine/lotteryMachine.js
+const app = getApp()
+var api = require('../../utils/api.js');
 Component({
   /**
    * 组件的属性列表
    */
   properties: {
-
+    prizeCount: {
+      type: Number,
+      value: 0
+    }    
   },
 
   /**
    * 组件的初始数据
    */
   data: {
-    lottery: [{
-      rewardName: '小米MAX',
-      rewardImg: ''
-    }, {
-      rewardName: '小米MAX',
-      rewardImg: ''
-    }, {
-      rewardName: '小米MAX',
-      rewardImg: ''
-    }, {
-      rewardName: '小米MAX',
-      rewardImg: ''
-    }, {
-      rewardName: '小米MAX',
-      rewardImg: ''
-    }, {
-      rewardName: '小米MAX',
-      rewardImg: ''
-    }, {
-      rewardName: '小米MAX',
-      rewardImg: ''
-    }, {
-      rewardName: '小米MAX',
-      rewardImg: ''
-    }, {
-      rewardName: '小米MAX',
-      rewardImg: ''
-    }],
+    IMGURL: api.imgUrl,
+    lottery: [],
     selectedIdx: null,
     lotteryStruct: [0, 1, 2, 5, 8, 7, 6, 3, 0],
     chance: 1
   },
   ready() {
-    // this._lotterymainFn();
+    this.getPrizes();
   },
   /**
    * 组件的方法列表
@@ -84,9 +63,7 @@ Component({
         if (this.hasChance()) {
           this._lotterymainFn();
         } else {
-          wx.showToast({
-            title: '今日抽奖次数已用完',
-          })
+          app.showErrorToast(this, '抽奖次数已用完', 1000);
         }
       }
     },
@@ -101,6 +78,27 @@ Component({
     },
     _randomTime() {
       return Math.floor(Math.random() * 1000) + 3000
+    },
+    /**
+     * 获取抽奖奖品信息
+     */
+    getPrizes() {
+      wx.request({
+        url: api.url + '/ezShop/services/prizes/getPrizes',
+        success: ({data}) => {
+          console.log(data, '---');
+          if (data.stateCode == '0000') {
+            this.setData({
+              lottery: data.datas
+            });
+          } else {
+            app.showErrorToast(this, data.errMsg, 1000);
+          }
+        },
+        fail: (res) => {
+          app.showErrorToast(this, '数据读取错误(getExtensionNews)', 1000);
+        }
+      });
     }
   },
 })

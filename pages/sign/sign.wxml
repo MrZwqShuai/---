@@ -2,6 +2,7 @@
 <view class='sign-wrap'>
   <view class='top-banner'>
     <image src='/images/sign-banner.png' mode='widthFix' class='top-banner-img'></image>
+    <view class='sign-btn' bindtap="sign"></view>
   </view>
   <view class='scrolling-screen'>
     <image src='/images/ribbon01.png' mode='widthFix' class='scrolling-screen-img'></image>
@@ -16,5 +17,9 @@
     </view>
   </view>
   <!-- 老虎机 -->
-  <lottery></lottery>
+  <lottery prize-count="{{prizeCount}}"></lottery>
+  <!-- 自定义弹窗  -->
+   <view class='toast'>
+  <toast wx:if="{{errorToast.show}}" error="{{errorToast}}" bindhide="hideToast"></toast>
+  </view>
 </view>
