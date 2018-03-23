@@ -18,7 +18,7 @@
         <view class='recore-item' wx:for="{{recordHistory}}" wx:key="*this">
           <view class='recore-txt'>
             <text class='content'>{{item.content}}</text>
-            <text class='date'>{{item.date}}</text>
+            <text class='date'>{{item.addTime}}</text>
           </view>
           <image src='/images/line.png' class='line' mode='widthFix'></image>
         </view>
@@ -26,4 +26,8 @@
     </scroll-view>
   </view>
   <!-- 购买纪录e -->
+  <!-- 自定义弹窗  -->
+   <view class='toast'>
+  <toast wx:if="{{errorToast.show}}" error="{{errorToast}}" bindhide="hideToast"></toast>
+  </view>
 </view>

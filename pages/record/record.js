@@ -22,14 +22,13 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-
+    this.getConsRecordsByUserId();
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
   },
 
   /**
@@ -70,18 +69,6 @@ Page({
    * mock 数据
    */
   mockRecord: function (frequency) {
-    let i = 0;
-    let increment = [{
-      content: '内容内容内容内容内容内容',
-      date: '2018年2月24'
-    }];
-    while (i < frequency) {
-      this.data.recordHistory = this.data.recordHistory.concat(increment);
-      i++;
-    }
-    this.setData({
-      recordHistory: this.data.recordHistory
-    });
   },
   loadmore: function () {
     this.showLoading();
@@ -114,6 +101,16 @@ Page({
       },
       success: ({ data }) => {
         console.log(data);
+        if (data.stateCode == '0000') {
+          this.setData({
+            recordHistory: data.datas
+          });
+        } else {
+          app.showErrorToast(this, data.errMsg, 1000);
+        }
+      },
+      fail: (err) => {
+        app.showErrorToast(this, '数据读取错误(getConsRecordsByUserId)', 1000);
       }
     })
   },
