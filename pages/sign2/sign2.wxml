@@ -1,24 +1,51 @@
 <!--pages/sign2/sign2.wxml-->
-<view class='sign2-wrap'>
-  <view class='sign2-header'>
-    <text class='sign2-header-txt integral'>积分</text>
-    <text class='sign2-header-txt lottery-record'>抽奖记录</text>
+<view class='sign-wrap'>
+  <view class='sign-header'>
+    <view class='sign-btn-container'>
+      <view class='sign-btn' bindtap='sign'>
+        <text>{{signStatus ? '已' : '点击'}}</text>
+        <text>签到</text>
+      </view>
+    </view>
+    <view class='sign-explain'>
+      <text class='sign-explain-title'>连续签到得好礼</text>
+    </view>
   </view>
-  <view class='sign2-content'>
-    <view class='sign2-content-title'>幸运大转盘</view>
-    <view class='lottery-prompt'>每次抽奖需要消耗10积分</view>
-    <view class='lottery-turntable'>
-      <view class='lottery-award'>
-        <image class="lottery-award-bg" animation="{{drawAnimation}}" src='/images/turntable.png' mode='scaleToFill'></image>
-        <view class='lottery-play' bindtap='play'>
-          <image class="lottery-play-btn" src='/images/play-turntable.png' mode='widthFix'></image>
+  <view class='sign-content'>
+    <!-- 日历插件 -->
+    <view class='calendar'>
+      <calendar></calendar>
+    </view>
+  </view>
+
+  <view class='sign-bottom'>
+    <view class='sign-explain-copy'>
+      ·连续签到领奖励·
+    </view>
+    <view class='sign-reward-box'>
+      <view class='reward-box-item' wx:for-items="{{signRwds}}" wx:key="*this">
+        <view class='head'>
+          <text class='sign-integral'>{{item.signIntegral}}</text>
+          <text class='sign-reward-txt'>{{item.signRewardTxt}}</text>
+        </view>
+        <view class="box-item-footer">
+          <view>连续签到:
+            <text class='condition-day'>{{item.signRwdCondition}}</text>
+          </view>
+          <view bindtap='receive' data-receiveInfo='{{item}}' data-index="{{index}}" class="receive-btn {{!item.isAccord || item.isSignReceived ? 'receive-btn-gray' : ' '}}">{{item.isSignReceived ? '已领取' : item.isAccord ? '点击领取' : '未达标'}}</view>
         </view>
       </view>
     </view>
   </view>
-  <view class='sign2-footer'>
-  <view class='sign2-footer-txt left'>我的优惠券</view>
-  <view class='sign2-footer-txt right' bindtap='goMallPage'>积分商城
-  </view>
+
+  <!-- 签到成功弹窗 -->
+  <view class='popup-success' wx:if="{{signSuccess}}">
+    <view class='popup-success-sign'>
+      <image class="success-sign-img" src='/images/sign-success.png' mode='widthFix'></image>
+      <view class='close' bindtap='close'>
+        <image class='close-img' src='/images/close.png' mode='widthFix'></image>
+      </view>
+    </view>
+    <view class='mask'></view>
   </view>
 </view>
