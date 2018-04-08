@@ -1,5 +1,6 @@
 {
   "usingComponents": {
-    "lottery": "/component/lotteryMachine/lotteryMachine"
+    "lottery": "/component/lotteryMachine/lotteryMachine",
+    "toast": "/component/myToast/myToast"
   }
 }

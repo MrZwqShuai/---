@@ -1,9 +1,10 @@
 {
   "pages": [
+    "pages/sign2/sign2",
+    "pages/sign/sign",
     "pages/index/index",
     "pages/login/login",
     "pages/record/record",
-    "pages/sign/sign",
     "pages/mall/mall",
     "pages/news/news",
     "pages/member/member",

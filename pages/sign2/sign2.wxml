@@ -1,0 +1,24 @@
+<!--pages/sign2/sign2.wxml-->
+<view class='sign2-wrap'>
+  <view class='sign2-header'>
+    <text class='sign2-header-txt integral'>积分</text>
+    <text class='sign2-header-txt lottery-record'>抽奖记录</text>
+  </view>
+  <view class='sign2-content'>
+    <view class='sign2-content-title'>幸运大转盘</view>
+    <view class='lottery-prompt'>每次抽奖需要消耗10积分</view>
+    <view class='lottery-turntable'>
+      <view class='lottery-award'>
+        <image class="lottery-award-bg" animation="{{drawAnimation}}" src='/images/turntable.png' mode='scaleToFill'></image>
+        <view class='lottery-play' bindtap='play'>
+          <image class="lottery-play-btn" src='/images/play-turntable.png' mode='widthFix'></image>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class='sign2-footer'>
+  <view class='sign2-footer-txt left'>我的优惠券</view>
+  <view class='sign2-footer-txt right' bindtap='goMallPage'>积分商城
+  </view>
+  </view>
+</view>

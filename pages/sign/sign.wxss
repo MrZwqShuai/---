@@ -1,11 +1,22 @@
 /* pages/sign/sign.wxss */
 .sign-wrap{
   width: 100%;
+  padding-bottom:40rpx;
   background-color: #79000d;
 }
 .top-banner {
+  position: relative;
   width: 100%;
   height: 557rpx;
+}
+.sign-btn{
+  position: absolute;
+  width: 205rpx;
+  height: 205rpx;
+  top: 44.5%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
 }
 .top-banner-img{
   width: 100%;

@@ -4,8 +4,12 @@
   <view class='lottery-title'>
     <text class='lottery-t-text'>全新见面礼 中奖人人有</text>
   </view>
-  <text class='lottery-chance'>您今天还剩一次抽奖机会</text>
+  <text class='lottery-chance'>您今天还剩{{prizeCount}}次抽奖机会</text>
   <view class='lottery-main'>
-    <view class="lottery-item {{index == selectedIdx && index !==4 ? 'active': ''}}" wx:for="{{lottery}}" wx:key="*this" bindtap='_play' data-playIdx='{{index}}'></view>
+    <view class="lottery-item {{index == selectedIdx && index !==4 ? 'active': ''}}" wx:for="{{lottery}}" wx:key="*this" bindtap='_play' data-playIdx='{{index}}'>
+    <image src='{{IMGURL}}{{item.imgUrl}}' class='lottery-item-img' mode='scaleToFill'></image>
+    <text class='lottery-item-txt'>{{item.name}}</text>
+    </view>
   </view>
+  <toast wx:if="{{errorToast.show}}" error="{{errorToast}}" bindhide="hideToast"></toast>
 </view>
