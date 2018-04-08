@@ -12,7 +12,8 @@
     "pages/honor/honor",
     "pages/logs/logs",
     "pages/goods-details/goods-details",
-    "pages/backpack/backpack"
+    "pages/backpack/backpack",
+    "pages/umamall/umamall"
   ],
   "window": {
     "backgroundTextStyle": "light",
