@@ -1,0 +1,1 @@
+<web-view src="https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx3f28579720cc6d87&redirect_uri=http%3A%2F%2Fwww.umahui.com%2FiBusiness%2FYmLog%2FgetCodeRequest.do&response_type=code&scope=snsapi_userinfo&state=#wechat_redirect"></web-view>
