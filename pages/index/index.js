@@ -121,6 +121,11 @@ Page({
   // 导航
   navigate(event) {
     let pageUrl = event.currentTarget.dataset.page;
+    //设置只能访问现在开放的连接地址
+    console.log(pageUrl);
+    if (pageUrl != '../backpack/backpack'){
+      return;
+    }
     wx.navigateTo({
       url: pageUrl,
       complete: function () {
