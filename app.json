@@ -2,6 +2,7 @@
   "pages": [
     "pages/index/index",
     "pages/sign2/sign2",
+    "pages/turntable/turntable",
     "pages/sign/sign",
     "pages/login/login",
     "pages/record/record",

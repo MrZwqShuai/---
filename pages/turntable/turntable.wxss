@@ -1,0 +1,99 @@
+/* pages/sign2/sign2.wxss */
+
+.sign2-wrap {
+  width: 100%;
+  height: 100%;
+  background: url(http://47.98.137.213/wxapp/images/sign2-bg.jpg) no-repeat;
+  background-size: 100% auto;
+}
+
+.sign2-header {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.sign2-header-txt {
+  width: 166rpx;
+  height: 63rpx;
+  margin-top: 10.2rpx;
+  line-height: 63rpx;
+  text-align: center;
+  border-radius: 35rpx;
+  font-size: 28.8rpx;
+  background-color: #fff;
+  color: #fe5b85;
+}
+.integral{
+   margin-left: 36rpx; 
+}
+.lottery-record{
+   margin-right: 36rpx; 
+}
+.sign2-content{
+  
+}
+.sign2-content-title{
+  margin-top: 57rpx;
+  text-align: center;
+  font-size: 85.8rpx;
+  font-weight: bold;
+  color: #ffe100;
+}
+.lottery-prompt{
+  width: 451.2rpx;
+  height: 60rpx;
+  margin: 12rpx auto 0;
+  line-height: 60rpx;
+  text-align: center;
+  font-size: 33.6rpx;
+  border-radius: 10rpx;
+  color: #fff;
+  background-color: #d934fd;
+}
+.lottery-award{
+  position: relative;
+  width: 685rpx;
+  height: 685rpx;
+  margin: 36rpx auto 39rpx;
+}
+.lottery-award-bg{
+  width: 100%;
+  height: 100%;
+
+  height: 100%;
+}
+.lottery-play{
+  position: absolute;
+  width: 156.6rpx;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.lottery-play-btn{
+  width: 100%;
+  margin-bottom: 30rpx;
+}
+.draw-rotate{
+
+}
+.sign2-footer{
+  display: flex;
+  justify-content: space-between;
+}
+.sign2-footer-txt{
+  width: 220rpx;
+  height: 73rpx;
+  line-height: 73rpx;
+  text-align: center;
+  background: url('http://47.98.137.213/wxapp/images/bottom-btn.png') no-repeat;
+  background-size: 100% auto;
+  font-size: 25.2rpx;
+  color: #ed5e07;
+}
+.sign2-footer .left{
+  margin-left: 98rpx;
+}
+.sign2-footer .right{
+  margin-right: 98rpx;
+}
