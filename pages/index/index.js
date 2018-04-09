@@ -123,7 +123,7 @@ Page({
     let pageUrl = event.currentTarget.dataset.page;
     //设置只能访问现在开放的连接地址
     console.log(pageUrl);
-    if (pageUrl != '../backpack/backpack'){
+    if (pageUrl != '../backpack/backpack' && pageUrl != '../sign2/sign2'){
       return;
     }
     wx.navigateTo({
