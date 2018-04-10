@@ -1,8 +1,8 @@
 {
   "pages": [
-    "pages/sign2/sign2",
-    "pages/turntable/turntable",
     "pages/sign/sign",
+    "pages/turntable/turntable",
+    "pages/sign2/sign2",
     "pages/index/index",
     "pages/login/login",
     "pages/record/record",
