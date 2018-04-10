@@ -167,7 +167,6 @@ Page({
             'content-type': 'application/json' // 默认值
           },
           success: ({ data }) => {
-            console.log(data)
             if (!data.datas.isFirstLogin) {
               that.loginSetUserInfo(data);
             } else {
