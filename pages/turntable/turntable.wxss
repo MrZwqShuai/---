@@ -3,7 +3,7 @@
 .sign2-wrap {
   width: 100%;
   height: 100%;
-  background: url(http://47.98.137.213/wxapp/images/sign2-bg.jpg) no-repeat;
+  background: url(https://www.youmahui.net/sign2-bg.jpg) no-repeat;
   background-size: 100% auto;
 }
 

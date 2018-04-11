@@ -31,11 +31,29 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    if (app.globalData.userInfo) {
-      this.setData({
-        userInfo: app.globalData.userInfo
-      })
+    if(app.globalData.userInfo) {
+      this.getUserIFR(app.globalData.userInfo.userId);
     }
+  },
+  // 查询用户积分，碎片，排名信息--用来刷新页面
+  getUserIFR: function (userId) {
+    var that = this;
+    wx.request({
+      url: api.url + '/ezShop/services/user/getUserIFR?userId=' + userId,
+      method: 'GET',
+      header: {
+        'content-type': 'application/json'
+      },
+      success: function (res) {
+        //用户积分，碎片，排名信息赋值
+        app.globalData.userInfo.points = res.data.datas.integral
+        app.globalData.userInfo.rank = res.data.datas.rank
+        app.globalData.userInfo.fragment = res.data.datas.fragment
+        that.setData({
+          userInfo: app.globalData.userInfo
+        })
+      }
+    })
   },
   //获取用户信息赋值到页面
   getAppUserInfo: function () {
@@ -122,9 +140,8 @@ Page({
   navigate(event) {
     let pageUrl = event.currentTarget.dataset.page;
     //设置只能访问现在开放的连接地址
-    console.log(pageUrl);
-    if (pageUrl != '../backpack/backpack' && pageUrl != '../sign2/sign2') {
-      // return;
+    if (pageUrl != '../backpack/backpack' /*&& pageUrl != '../sign2/sign2'*/) {
+       return;
     }
     wx.navigateTo({
       url: pageUrl,
@@ -149,6 +166,8 @@ Page({
     app.globalData.userInfo.rank = data.datas.rank
     app.globalData.userInfo.fragment = data.datas.fragment
     app.globalData.userInfo.userId = data.datas.userId
+    //加载用户排名积分
+    this.getUserIFR(data.datas.userId);
     //获取用户信息
     this.getAppUserInfo();
     //获取首页展示的积分商品

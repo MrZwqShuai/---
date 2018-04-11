@@ -7,7 +7,7 @@
 .sign-header{
   width: 100%;
   height: 373.8rpx;
-  background: url('http://47.98.137.213/wxapp/images/sign-head-bg.png') no-repeat;
+  background: url('https://www.youmahui.net/sign-head-bg.png') no-repeat;
   background-size: 100% auto;
 }
 .sign-btn{
