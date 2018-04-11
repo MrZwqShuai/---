@@ -155,8 +155,10 @@
 }
 
 .exchange-child-img {
-  width: 160rpx;
-  height: 90rpx;
+  width: 100%;
+  height: 90rpx;margin-left:10rpx;
+margin-bottom:22rpx;
+
 }
 
 .exchange-child-explain {
