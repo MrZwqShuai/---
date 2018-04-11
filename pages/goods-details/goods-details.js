@@ -40,11 +40,28 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    this.setData({
-      points: app.globalData.userInfo.points
+    this.getUserIntegralAndFragment(app.globalData.userInfo.userId);
+  },
+  getUserIntegralAndFragment: function (userId) {
+    console.log(111111111)
+    var that = this;
+    wx.request({
+      url: api.url + '/ezShop/services/user/getUserIntegralAndFragment?userId=' + userId,
+      method: 'GET',
+      header: {
+        'content-type': 'application/json'
+      },
+      success: function (res) {
+        console.log(res)
+        //用户积分，碎片信息赋值
+        app.globalData.userInfo.points = res.data.datas.integral
+        app.globalData.userInfo.fragment = res.data.datas.fragment
+        that.setData({
+          points: app.globalData.userInfo.points
+        })
+      }
     })
   },
-
   /**
    * 生命周期函数--监听页面隐藏
    */

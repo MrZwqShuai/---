@@ -32,22 +32,39 @@ Page({
    */
   onShow: function () {
     if(app.globalData.userInfo) {
-      this.getUserIFR(app.globalData.userInfo.userId);
+      this.getUserRank(app.globalData.userInfo.userId);
+      this.getUserIntegralAndFragment(app.globalData.userInfo.userId);
     }
   },
   // 查询用户积分，碎片，排名信息--用来刷新页面
-  getUserIFR: function (userId) {
+  getUserRank: function (userId) {
     var that = this;
     wx.request({
-      url: api.url + '/ezShop/services/user/getUserIFR?userId=' + userId,
+      url: api.url + '/ezShop/services/user/getUserRank?userId=' + userId,
       method: 'GET',
       header: {
         'content-type': 'application/json'
       },
       success: function (res) {
-        //用户积分，碎片，排名信息赋值
-        app.globalData.userInfo.points = res.data.datas.integral
+        //用户排名信息赋值
         app.globalData.userInfo.rank = res.data.datas.rank
+        that.setData({
+          userInfo: app.globalData.userInfo
+        })
+      }
+    })
+  },
+  getUserIntegralAndFragment: function (userId) {
+    var that = this;
+    wx.request({
+      url: api.url + '/ezShop/services/user/getUserIntegralAndFragment?userId=' + userId,
+      method: 'GET',
+      header: {
+        'content-type': 'application/json'
+      },
+      success: function (res) {
+        //用户积分，碎片信息赋值
+        app.globalData.userInfo.points = res.data.datas.integral
         app.globalData.userInfo.fragment = res.data.datas.fragment
         that.setData({
           userInfo: app.globalData.userInfo
@@ -167,7 +184,8 @@ Page({
     app.globalData.userInfo.fragment = data.datas.fragment
     app.globalData.userInfo.userId = data.datas.userId
     //加载用户排名积分
-    this.getUserIFR(data.datas.userId);
+    this.getUserRank(data.datas.userId);
+    this.getUserIntegralAndFragment(data.datas.userId);
     //获取用户信息
     this.getAppUserInfo();
     //获取首页展示的积分商品
