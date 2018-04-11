@@ -114,6 +114,7 @@ Page({
       success: ({ data }) => {
         console.log(data);
         if (data.stateCode == '0000') {
+          this.refreshUserInfo();
           wx.hideLoading();
           let id = data.datas.id
           this.playing(id);
@@ -138,7 +139,30 @@ Page({
       this.data.rotateN ++;
       this.setData({
         drawAnimation: animation.export()
-      })
+      });
+  },
+  /**
+   * 刷新个人信息
+   */
+  refreshUserInfo: function() {
+    wx.request({
+      url: api.url + '/ezShop/services/user/getUserIFR',
+      method: 'GET',
+      data: {
+        userId: app.globalData.userInfo.userId
+        // userId: 32807
+      },
+      success: ({data}) => {
+        if (data.stateCode == "0000") {
+          console.log(data, 999)
+          this.setData({
+            points: data.datas.fragment
+          });
+        } else {
+          app.showErrorToast(this, data.errMsg, 1000);
+        }
+      }
+    })
   },
   goMallPage: function () {
     wx.navigateTo({
