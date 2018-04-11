@@ -1,0 +1,37 @@
+/* pages/awards-record/awards-record.wxss */
+/* 抽奖记录s */
+
+.buy-record {
+  width: 100%;
+  min-height: 100%;
+  padding-top: 30rpx;
+  background-color: #65000b;
+}
+
+.buy-record .line {
+  width: 100%;
+}
+.record-history{
+  width: 100%;
+  height: 800rpx; 
+  margin-top: 80rpx;
+}
+.recore-txt {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 669rpx;
+  margin: 0 auto -12rpx;
+}
+
+.recore-txt .content {
+  font-size: 28rpx;
+  color: #e4e4e4;
+}
+
+.recore-txt .date {
+  font-size: 28rpx;
+  color: #c49e50;
+}
+
+/* 抽奖记录e */

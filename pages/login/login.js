@@ -43,10 +43,6 @@ Page({
       app.showErrorToast(this, '请输入正确的手机号', 1000);
     } else {
       this.sendVCode();
-      this.setData({
-        isCountDown: true
-      });
-      this.countDown();
     }
   },
   countDown: function () {
@@ -77,7 +73,13 @@ Page({
       },
       success: (res) => {
         if (res.data.stateCode == '0000') {
-          app.showErrorToast(this, '发送成功', 1000);
+          wx.showToast({
+            title: '发送成功',
+          });
+          this.setData({
+            isCountDown: true
+          });
+          this.countDown();
         } else {
           app.showErrorToast(this, res.data.errMsg, 1000);
         }
@@ -103,6 +105,9 @@ Page({
     var that = this;
     var session_id = wx.getStorageSync('J_SESSID');
     // 登录
+    wx.showLoading({
+      title: '加载中',
+    });
     wx.login({
       success: res => {
         wx.request({
@@ -118,6 +123,7 @@ Page({
                 isCountDown: false,
                 times: 0
               });
+              wx.hideLoading();
               that.showSendCodeBtn();
               if (!app.globalData.userInfo) {
                 app.globalData.userInfo.points = res.data.datas.integral
@@ -125,7 +131,9 @@ Page({
                 app.globalData.userInfo.fragment = res.data.datas.fragment
                 app.globalData.userInfo.userId = res.data.datas.userId
                 // 跳转到首页
-                wx.redirectTo({ url: '../index/index', })
+                setTimeout(() => {
+                  wx.redirectTo({ url: '../index/index', });
+                }, 800);
               } else {
                 setTimeout(function () {
                   app.globalData.userInfo.points = res.data.datas.integral
@@ -137,7 +145,8 @@ Page({
                 }, 1000);
               }
             } else {
-              app.showErrorToast(this, res.data.errMsg, 1000);
+              wx.hideLoading();
+              app.showErrorToast(this, '系统错误', 1000);
             }
           }
         })

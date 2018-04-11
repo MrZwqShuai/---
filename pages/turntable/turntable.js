@@ -1,12 +1,16 @@
 // pages/sign2/sign2.js
 const app = getApp();
+var api = require('../../utils/api.js');
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    drawAnimation: {}
+    drawAnimation: {},
+    integralGoods: [],
+    points: 0,
+    rotateN: 1
   },
 
   /**
@@ -20,7 +24,11 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-
+    this.getPrizes();
+    console.log('app.globalData.userInfo.points', app.globalData.userInfo.points);
+    this.setData({
+      points: app.globalData.userInfo.fragment
+    })
   },
 
   /**
@@ -67,20 +75,79 @@ Page({
   /**
    * 开始转盘
    */
-  play: function () {
-    let animation = wx.createAnimation({
-      duration: 1000,
-      timingFunction: 'ease',
-    });
-    this.animation = animation;
-    animation.rotate(1080).step();
-    this.setData({
-      drawAnimation: animation.export()
+  startPlay: function () {
+    this.prize();
+  },
+  /**
+   * 获取奖品
+   */
+  getPrizes: function () {
+    wx.request({
+      url: api.url + '/ezShop/services/prizes/getPrizes',
+      method: 'GET',
+      success: ({ data }) => {
+        console.log(data)
+        if (data.stateCode == '0000') {
+          this.setData({
+            integralGoods: data.datas
+          });
+        } else {
+          app.showErrorToast(this, data.errMsg, 1000);
+        }
+      }
     })
+  },
+  /**
+   * 抽奖
+   */
+  prize: function () {
+    wx.showLoading({
+      title: '抽奖启动中',
+    });
+    wx.request({
+      url: api.url + '/ezShop/services/prizes/prize',
+      method: 'GET',
+      data: {
+        userId: app.globalData.userInfo.userId
+        // userId: 32807
+      },
+      success: ({ data }) => {
+        console.log(data);
+        if (data.stateCode == '0000') {
+          wx.hideLoading();
+          let id = data.datas.id
+          this.playing(id);
+        } else {
+          wx.hideLoading();
+          app.showErrorToast(this, data.errMsg, 1000);
+        }
+      },
+      fail: (e) => {
+        wx.hideLoading();
+      }
+    })
+  },
+  playing: function (awardId) {
+      let animation = wx.createAnimation({
+        duration: 1000,
+        timingFunction: 'ease',
+      });
+      console.log(awardId)
+      this.animation = animation;
+      animation.rotate(1440*this.data.rotateN-(awardId-1)*60).step();
+      this.data.rotateN ++;
+      this.setData({
+        drawAnimation: animation.export()
+      })
   },
   goMallPage: function () {
     wx.navigateTo({
       url: '../mall/mall',
     });
+  },
+  goAwardsRecordPage: function() {
+    wx.navigateTo({
+      url: '../awards-record/awards-record',
+    })
   }
 })

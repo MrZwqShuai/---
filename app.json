@@ -1,9 +1,10 @@
 {
   "pages": [
-    "pages/sign/sign",
-    "pages/turntable/turntable",
-    "pages/sign2/sign2",
     "pages/index/index",
+    "pages/sign2/sign2",
+    "pages/awards-record/awards-record",
+    "pages/turntable/turntable",
+    "pages/sign/sign",
     "pages/login/login",
     "pages/record/record",
     "pages/mall/mall",

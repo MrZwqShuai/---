@@ -1,0 +1,22 @@
+<!--pages/awards-record/awards-record.wxml-->
+
+  <!-- 抽奖纪录s -->
+  <view class='buy-record'>
+  <view style='position: fixed;left: 50%;font-size: 30rpx; color: #fff; transform: translateX(-50%)'>抽奖记录</view>
+      <scroll-view scroll-y style='height: 100%;' bindscrolltolower="loadmore" scroll-with-animation="true">
+        <view class='record-history'>
+          <view class='recore-item' wx:for="{{recordHistory}}" wx:key="*this">
+            <view class='recore-txt'>
+              <text class='content'>{{item.name}}</text>
+              <text class='date'>{{item.addTime}}</text>
+            </view>
+            <image src='/images/line.png' class='line' mode='widthFix'></image>
+          </view>
+        </view>
+      </scroll-view>
+    </view>
+    <!-- 抽奖纪录e -->
+  <!-- 自定义弹窗  -->
+  <view class='toast'>
+    <toast wx:if="{{errorToast.show}}" error="{{errorToast}}" bindhide="hideToast"></toast>
+  </view>

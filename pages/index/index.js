@@ -1,6 +1,6 @@
 //index.js
 //获取应用实例
-const app = getApp()
+const app = getApp();
 var api = require('../../utils/api.js');
 Page({
   data: {
@@ -31,7 +31,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    if (app.globalData.userInfo){
+    if (app.globalData.userInfo) {
       this.setData({
         userInfo: app.globalData.userInfo
       })
@@ -39,9 +39,9 @@ Page({
   },
   //获取用户信息赋值到页面
   getAppUserInfo: function () {
-      this.setData({
-        userInfo: app.globalData.userInfo
-      })
+    this.setData({
+      userInfo: app.globalData.userInfo
+    })
   },
   // 获取首页展示的积分商品
   getIntegralGoods: function () {
@@ -121,6 +121,11 @@ Page({
   // 导航
   navigate(event) {
     let pageUrl = event.currentTarget.dataset.page;
+    //设置只能访问现在开放的连接地址
+    console.log(pageUrl);
+    if (pageUrl != '../backpack/backpack' && pageUrl != '../sign2/sign2') {
+      // return;
+    }
     wx.navigateTo({
       url: pageUrl,
       complete: function () {
@@ -128,7 +133,7 @@ Page({
     })
   },
   getWxUserInfo: function () {
-    if (app.globalData.userInfo){
+    if (app.globalData.userInfo) {
       return;
     }
     var that = this;
@@ -158,6 +163,9 @@ Page({
     this.getWxUserInfo();
     var that = this;
     // 登录
+    wx.showLoading({
+      title: '加载中',
+    });
     wx.login({
       success: res => {
         wx.request({
@@ -167,10 +175,16 @@ Page({
             'content-type': 'application/json' // 默认值
           },
           success: ({ data }) => {
-            if (!data.datas.isFirstLogin) {
-              that.loginSetUserInfo(data);
+            if (data.stateCode == '0000') {
+              wx.hideLoading();
+              if (!data.datas.isFirstLogin) {
+                that.loginSetUserInfo(data);
+              } else {
+                wx.redirectTo({ url: '../login/login', })
+              }
             } else {
-              wx.redirectTo({ url: '../login/login', })
+              wx.hideLoading();
+              app.showErrorToast(this, data.errMsg, 1000);
             }
             wx.setStorageSync('J_SESSID', data.datas.J_SESSID);
           }

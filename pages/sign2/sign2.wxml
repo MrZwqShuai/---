@@ -1,5 +1,7 @@
 <!--pages/sign2/sign2.wxml-->
 <view class='sign-wrap'>
+<!-- 暂时跳转 后期删除 -->
+  <navigator url="../turntable/turntable" hover-class="navigator-hover" style='position: absolute; top: 40rpx; right: 20rpx; color: #fff;font-size: 30rpx'>抽奖页</navigator>
   <view class='sign-header'>
     <view class='sign-btn-container'>
       <view class='sign-btn' bindtap='sign'>

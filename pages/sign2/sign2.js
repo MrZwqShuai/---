@@ -1,5 +1,6 @@
 // pages/sign2/sign2.js
 const app = getApp();
+var api = require('../../utils/api.js');
 Page({
 
   /**
@@ -39,14 +40,13 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log(app.globalData, 999)
+    this.sign();
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-
   },
 
   /**
@@ -91,28 +91,83 @@ Page({
 
   },
   /**
+   * 用户签到的日期
+   */
+  isSign: function() {
+    wx.request({
+      url: api.url + '/ezShop/services/user/isSign',
+      method: 'GET',
+      data: {
+        // userId: 32807
+        userId: app.globalData.userInfo.userId
+      },
+      success: ({ data }) => {
+        if (data.stateCode == '0000') {
+          wx.hideLoading();
+          this.setData({
+            signSuccess: true,
+            signStatus: true
+          });
+        } else if (data.stateCode == '0002') {
+          wx.hideLoading();
+          this.setData({
+            signSuccess: false,
+            signStatus: true
+          });
+        } else {
+          wx.hideLoading();
+          this.setData({
+            signSuccess: false,
+            signStatus: false
+          });
+        }
+      }
+    })
+  },
+  /**
    * 签到
    */
   sign: function () {
     if (!this.hasSign()) {
-      this.setData({
-        signSuccess: true,
-        signStatus: true
+      wx.showLoading({
+        title: '加载中',
       });
-    } else {
-      this.setData({
-        signSuccess: false
+      wx.request({
+        url: api.url + '/ezShop/services/user/sign',
+        method: 'GET',
+        data: {
+          userId: 32807
+          // userId: app.globalData.userInfo.userId
+        },
+        success: ({ data }) => {
+          if (data.stateCode == '0000') {
+            wx.hideLoading();
+            this.setData({
+              signSuccess: true,
+              signStatus: true
+            });
+          } else if (data.stateCode == '0002') {
+            wx.hideLoading();
+            this.setData({
+              signSuccess: false,
+              signStatus: true
+            });
+          } else {
+            wx.hideLoading();
+            this.setData({
+              signSuccess: false,
+              signStatus: false
+            });
+          }
+        }
       });
     }
   },
   /**
-   * 通过接口请求是否已签到
+   * 是否已签到
    */
   hasSign: function () {
-    if (this.data.signStatus) {
-      return true;
-    }
-    return false
+    return this.data.signStatus
   },
   close: function () {
     this.setData({
