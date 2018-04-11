@@ -172,7 +172,7 @@ page {
 }
 
 .grid {
-  width: 99.1428571429rpx;
+  width: 98.1428571429rpx;
 }
 
 .day {

@@ -107,6 +107,8 @@ Page({
         this.setData({
           myChoosedIdList: data.datas
         });
+        // 触发日期组件里面的签到
+        this.selectComponent("#calendar").initSignDays()
         console.log(this.data.myChoosedIdList)
         if (data.stateCode == '0000') {
           wx.hideLoading();
@@ -151,6 +153,7 @@ Page({
               signSuccess: true,
               signStatus: true
             });
+            this.isSign();
           } else if (data.stateCode == '0002') {
             wx.hideLoading();
             this.setData({

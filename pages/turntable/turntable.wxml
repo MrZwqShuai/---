@@ -20,7 +20,7 @@
     </view>
   </view>
   <view class='sign2-footer'>
-    <view class='sign2-footer-txt left'>我的优惠券</view>
+    <!-- <view class='sign2-footer-txt left'>我的优惠券</view> -->
     <view class='sign2-footer-txt right' bindtap='goMallPage'>积分商城
     </view>
   </view>

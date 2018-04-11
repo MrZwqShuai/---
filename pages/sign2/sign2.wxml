@@ -16,11 +16,11 @@
   <view class='sign-content'>
     <!-- 日历插件 -->
     <view class='calendar'>
-      <calendar choosedIdList="{{myChoosedIdList}}"></calendar>
+      <calendar choosedIdList="{{myChoosedIdList}}" id="calendar"></calendar>
     </view>
   </view>
 
-  <view class='sign-bottom'>
+  <!-- <view class='sign-bottom'>
     <view class='sign-explain-copy'>
       ·连续签到领奖励·
     </view>
@@ -38,7 +38,7 @@
         </view>
       </view>
     </view>
-  </view>
+  </view> -->
 
   <!-- 签到成功弹窗 -->
   <view class='popup-success' wx:if="{{signSuccess}}">
