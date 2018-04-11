@@ -135,7 +135,7 @@ Page({
       });
       console.log(awardId)
       this.animation = animation;
-      animation.rotate(1440*this.data.rotateN-(awardId-1)*60).step();
+      animation.rotate(2160*this.data.rotateN-(awardId-1)*60).step();
       this.data.rotateN ++;
       this.setData({
         drawAnimation: animation.export()
