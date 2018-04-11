@@ -40,8 +40,7 @@ Page({
   getUserRank: function (userId) {
     var that = this;
     wx.request({
-      url: api.url + '/ezShop/services/user/getUserRank?userId=' + userId,
-      method: 'GET',
+      url: api.url + '/ezShop/services/user/getUserRank?userId=' + userId,      method: 'GET',
       header: {
         'content-type': 'application/json'
       },

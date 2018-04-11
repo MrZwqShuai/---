@@ -97,10 +97,16 @@ Page({
       }
     })
   },
+  notEnoughIntegral: function() {
+    return this.data.points < 50;
+  },
   /**
    * 抽奖
    */
   prize: function () {
+    if(this.notEnoughIntegral()) {
+      return app.showErrorToast(this, '您的碎片不足~', 1000);
+    }
     wx.showLoading({
       title: '抽奖启动中',
     });
@@ -114,9 +120,11 @@ Page({
       success: ({ data }) => {
         console.log(data);
         if (data.stateCode == '0000') {
+          this.refreshUserInfo();
           wx.hideLoading();
-          let id = data.datas.id
-          this.playing(id);
+          let id = data.datas.id;
+          let prize_name = data.datas.prize_name;
+          this.playing(id, prize_name);
         } else {
           wx.hideLoading();
           app.showErrorToast(this, data.errMsg, 1000);
@@ -127,18 +135,48 @@ Page({
       }
     })
   },
-  playing: function (awardId) {
+  playing: function (awardId, prize_name) {
       let animation = wx.createAnimation({
         duration: 1000,
         timingFunction: 'ease',
       });
       console.log(awardId)
       this.animation = animation;
-      animation.rotate(1440*this.data.rotateN-(awardId-1)*60).step();
+      animation.rotate(2160*this.data.rotateN-(awardId-1)*60).step();
+      let timer = setTimeout(() => {
+        wx.showToast({
+          title: `抽到${prize_name}`,
+          duration: 1000
+        });
+        clearTimeout(timer);
+      }, 1000);
       this.data.rotateN ++;
       this.setData({
         drawAnimation: animation.export()
-      })
+      });
+  },
+  /**
+   * 刷新个人信息
+   */
+  refreshUserInfo: function() {
+    wx.request({
+      url: api.url + '/ezShop/services/user/getUserFragment',
+      method: 'GET',
+      data: {
+        userId: app.globalData.userInfo.userId
+        // userId: 32807
+      },
+      success: ({data}) => {
+        if (data.stateCode == "0000") {
+          console.log(data, 999)
+          this.setData({
+            points: data.datas.fragment
+          });
+        } else {
+          app.showErrorToast(this, data.errMsg, 1000);
+        }
+      }
+    })
   },
   goMallPage: function () {
     wx.navigateTo({

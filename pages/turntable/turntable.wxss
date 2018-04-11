@@ -140,7 +140,7 @@
 
 .sign2-footer {
   display: flex;
-  justify-content: flex-start;
+  justify-content: flex-end;
 }
 
 .sign2-footer-txt {
@@ -160,5 +160,5 @@
 
 .sign2-footer .right {
   margin-left:70rpx;
-  margin-right: 98rpx;
+  margin-right: 42rpx;
 }
