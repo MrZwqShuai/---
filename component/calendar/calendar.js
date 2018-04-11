@@ -114,16 +114,6 @@ Component({
       });
     }
   },
-  tapDayItem(e) {
-    const idx = e.currentTarget.dataset.idx;
-    console.log(idx)
-    const days = this.data.days;
-    console.log(days);
-    days[idx].choosed = true
-    this.setData({
-      days,
-    });
-  },
   pickerChange(e) {
     const val = e.detail.value;
     chooseYear = this.data.pickerYear[val[0]];
