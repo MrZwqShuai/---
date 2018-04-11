@@ -41,7 +41,6 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    // this.sign();
     this.isSign();
   },
 
@@ -100,8 +99,7 @@ Page({
       url: api.url + '/ezShop/services/user/isSign',
       method: 'GET',
       data: {
-        userId: 32807
-        // userId: app.globalData.userInfo.userId
+         userId: app.globalData.userInfo.userId
       },
       success: ({ data }) => {
         this.setData({
@@ -109,7 +107,6 @@ Page({
         });
         // 触发日期组件里面的签到
         this.selectComponent("#calendar").initSignDays()
-        console.log(this.data.myChoosedIdList)
         if (data.stateCode == '0000') {
           wx.hideLoading();
           this.setData({
@@ -143,8 +140,7 @@ Page({
         url: api.url + '/ezShop/services/user/sign',
         method: 'GET',
         data: {
-          userId: 32807
-          // userId: app.globalData.userInfo.userId
+           userId: app.globalData.userInfo.userId
         },
         success: ({ data }) => {
           if (data.stateCode == '0000') {
