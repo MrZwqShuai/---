@@ -39,7 +39,7 @@ Page({
   getUserIFR: function (userId) {
     var that = this;
     wx.request({
-      url: api.url + '/ezShop/services/user/getUserIFR?userId=' + userId,
+      url: api.url + '/ezShop/services/user/getUserIntegralAndFragment?userId=' + userId,
       method: 'GET',
       header: {
         'content-type': 'application/json'
