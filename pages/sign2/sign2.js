@@ -33,14 +33,16 @@ Page({
       signRwdCondition: '15天',
       isSignReceived: false,
       isAccord: false
-    }]
+    }],
+    myChoosedIdList: []
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.sign();
+    // this.sign();
+    this.isSign();
   },
 
   /**
@@ -98,20 +100,23 @@ Page({
       url: api.url + '/ezShop/services/user/isSign',
       method: 'GET',
       data: {
-        // userId: 32807
-        userId: app.globalData.userInfo.userId
+        userId: 32807
+        // userId: app.globalData.userInfo.userId
       },
       success: ({ data }) => {
+        this.setData({
+          myChoosedIdList: data.datas
+        });
+        console.log(this.data.myChoosedIdList)
         if (data.stateCode == '0000') {
           wx.hideLoading();
           this.setData({
-            signSuccess: true,
-            signStatus: true
+            signSuccess: false,
+            signStatus: false
           });
-        } else if (data.stateCode == '0002') {
+        } else if (data.stateCode == '0001') {
           wx.hideLoading();
           this.setData({
-            signSuccess: false,
             signStatus: true
           });
         } else {

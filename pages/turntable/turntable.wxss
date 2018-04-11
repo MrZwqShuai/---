@@ -148,7 +148,7 @@
   height: 73rpx;
   line-height: 73rpx;
   text-align: center;
-  background: url('http://47.98.137.213/wxapp/images/bottom-btn.png') no-repeat;
+  background: url('https://www.youmahui.net/bottom-btn.png') no-repeat;
   background-size: 100% auto;
   font-size: 25.2rpx;
   color: #ed5e07;

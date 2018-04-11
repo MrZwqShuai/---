@@ -4,7 +4,10 @@ Component({
    * 组件的属性列表
    */
   properties: {
-
+    choosedIdList: {
+      type: 'array',
+      value: []
+    }
   },
 
   /**
@@ -13,11 +16,11 @@ Component({
   data: {
     hasEmptyGrid: false,
     showPicker: false,
-    signDay: 10,
-    signReward: '200优妈慧积分'
+    signDay: 50,
   },
 
   ready() {
+    this.initSignDays();
     const date = new Date();
     const curYear = date.getFullYear();
     const curMonth = date.getMonth() + 1;
@@ -113,32 +116,14 @@ Component({
   },
   tapDayItem(e) {
     const idx = e.currentTarget.dataset.idx;
+    console.log(idx)
     const days = this.data.days;
-    days[idx].choosed = !days[idx].choosed;
+    console.log(days);
+    days[idx].choosed = true
     this.setData({
       days,
     });
   },
-  // chooseYearAndMonth() {
-  //   const curYear = this.data.curYear;
-  //   const curMonth = this.data.curMonth;
-  //   let pickerYear = [];
-  //   let pickerMonth = [];
-  //   for (let i = 1900; i <= 2100; i++) {
-  //     pickerYear.push(i);
-  //   }
-  //   for (let i = 1; i <= 12; i++) {
-  //     pickerMonth.push(i);
-  //   }
-  //   const idxYear = pickerYear.indexOf(curYear);
-  //   const idxMonth = pickerMonth.indexOf(curMonth);
-  //   this.setData({
-  //     pickerValue: [idxYear, idxMonth],
-  //     pickerYear,
-  //     pickerMonth,
-  //     showPicker: true,
-  //   });
-  // },
   pickerChange(e) {
     const val = e.detail.value;
     chooseYear = this.data.pickerYear[val[0]];
@@ -157,6 +142,17 @@ Component({
     }
 
     this.setData(o);
+  },
+  initSignDays: function() {
+    setTimeout(() => {
+      const days = this.data.days;
+      this.data.choosedIdList.forEach((chooseId) => {
+        days[chooseId.monthNum - 1].choosed = true;
+      });
+      this.setData({
+        days,
+      });
+    }, 500);
   }
   }
 })

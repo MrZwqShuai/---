@@ -6,6 +6,7 @@
   top: 0;
   width: 100%;
   height: auto;
+  min-height: 100%;
   background-color: #79000d;
 }
 
@@ -157,9 +158,8 @@
 .exchange-child-img {
  width:95%;
 height:90rpx;
-margin-left:14rpx;
+margin-left:14.5rpx;
 margin-bottom:22rpx;
-
 
 }
 

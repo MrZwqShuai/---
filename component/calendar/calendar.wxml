@@ -6,7 +6,7 @@
         <view class="prev-handle box box-lr box-align-center box-pack-center">《</view>
       </view> -->
       <view bindtap="chooseYearAndMonth" class="date-area box-lr box-align-center box-pack-center">{{curYear || "--"}} 年 {{curMonth || "--"}} 月</view>
-      <view class='sign-reward'>再<text class='sign-txt-cl'>连续</text>签到<text class='sign-txt-cl'>{{signDay}}</text>天即可获得<text class='sign-txt-cl'>{{signReward}}</text></view>
+      <view class='sign-reward'>每周签到<text class='sign-txt-cl'>满5天</text>即可获得<text class='sign-txt-cl'>{{signDay}}</text>碎片</view>
       <!-- <view class="next box box-lr" bindtap="handleCalendar" data-handle="next">
         <view class="next-handle box box-lr box-align-center box-pack-center">》</view>
       </view> -->
