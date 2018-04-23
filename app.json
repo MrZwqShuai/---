@@ -1,6 +1,7 @@
 {
   "pages": [
     "pages/index/index",
+    "pages/upload/upload",
     "pages/sign2/sign2",
     "pages/awards-record/awards-record",
     "pages/turntable/turntable",
@@ -14,8 +15,7 @@
     "pages/logs/logs",
     "pages/goods-details/goods-details",
     "pages/backpack/backpack",
-    "pages/umamall/umamall",
-    "pages/upload/upload"
+    "pages/umamall/umamall"
   ],
   "window": {
     "backgroundTextStyle": "light",
