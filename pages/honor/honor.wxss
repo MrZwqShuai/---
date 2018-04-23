@@ -41,7 +41,7 @@
   animation: animate-positive 2s;
 }
 
-.progress .progress-value {
+/* .progress .progress-value {
   display: block;
   padding: 6rpx 14rpx;
   font-size: 13px;
@@ -62,7 +62,7 @@
   position: absolute;
   bottom: -6px;
   left: 26%;
-}
+} */
 
 .progress-bar.active {
   animation: reverse progress-bar-stripes 0.40s linear infinite, animate-positive 2s;

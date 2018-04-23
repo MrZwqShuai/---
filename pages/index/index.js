@@ -8,6 +8,20 @@ Page({
     // 首页导航
     navs: [],
     rewards: [],
+    percent: '0%',
+    members: [{
+      url: '/images/diamonds-1.png',
+      durl: '/images/diamonds-5.png',
+    }, {
+      url: '/images/diamonds-2.png',
+      durl: '/images/diamonds-6.png',
+    }, {
+      url: '/images/diamonds-3.png',
+      durl: '/images/diamonds-7.png',
+    }, {  
+      url: '/images/diamonds-4.png',
+      durl: '/images/diamonds-8.png',
+    },]
   },
   onLoad: function () {
     //判断用户是否授权，并且获取用户信息
@@ -36,7 +50,7 @@ Page({
       this.getUserIntegralAndFragment(app.globalData.userInfo.userId);
     }
   },
-  // 查询用户积分，碎片，排名信息--用来刷新页面
+  // 查询用户排名信息--用来刷新页面
   getUserRank: function (userId) {
     var that = this;
     wx.request({
@@ -68,6 +82,31 @@ Page({
         that.setData({
           userInfo: app.globalData.userInfo
         })
+      }
+    })
+  },
+  // 查询用户等级
+  getUserLevel: function () {
+    wx.request({
+      url: api.url + '/ezShop/services/user/getUserLevel',
+      method: 'GET',
+      data: {
+        userId: app.globalData.userInfo.userId
+      },
+      success: ({ data }) => {
+        console.log(data);
+        if (data.stateCode == '0000') {
+          let experience = (data.datas.experience / 2000) * 100 + '%';
+          experience = experience = 100 ? 100 : experience;
+          this.setData({
+            percent: experience
+          });
+        } else {
+          app.showErrorToast(this, data.errMsg, 1000);
+        }
+      },
+      fail: (error) => {
+        app.showErrorToast(this, error.message, 1000);
       }
     })
   },
@@ -157,7 +196,7 @@ Page({
     let pageUrl = event.currentTarget.dataset.page;
     //设置只能访问现在开放的连接地址
     if (pageUrl != '../backpack/backpack' && pageUrl != '../sign2/sign2') {
-       return;
+      return;
     }
     wx.navigateTo({
       url: pageUrl,
@@ -193,6 +232,8 @@ Page({
     this.getNavs();
     //获取推广消息
     this.getExtensionNews();
+    // 获取用户等级
+    this.getUserLevel();
   },
   loginByCode: function () {
     //获取微信的用户信息

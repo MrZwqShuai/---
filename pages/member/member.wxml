@@ -8,7 +8,7 @@
 <view class='member-form-item'></view>
 <image src='{{item.icon}}' class='form-icon' mode='widthFix'></image>
 <text class='icon-explain' space="true">{{item.iconDesc}}</text>
-<input placeholder='请输入{{item.iconDesc}}' class='submit-input'></input>
+<input placeholder='请输入{{item.iconDesc}}' class='submit-input' data-index = "{{index}}" bindblur="memberChange"></input>
 <image src="/images/member08.png" class='revise-btn' mode='widthFix'></image>
 </view>
 <!-- 提交 -->

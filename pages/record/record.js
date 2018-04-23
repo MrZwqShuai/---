@@ -8,7 +8,8 @@ Page({
    */
   data: {
     recordHistory: [],
-    keyword: ''
+    keyword: '',
+    pageNum: 1
   },
 
   /**
@@ -72,14 +73,7 @@ Page({
   },
   loadmore: function () {
     this.showLoading();
-    let increment = [{
-      content: '内容内容内容内容内容内容',
-      date: '2018年2月24'
-    }];
-    this.data.recordHistory = this.data.recordHistory.concat(increment);
-    this.setData({
-      recordHistory: this.data.recordHistory
-    });
+    this.getConsRecordsByUserId();
     setTimeout(() => {
       wx.hideLoading();
     }, 500);
@@ -92,24 +86,42 @@ Page({
   /**
    * 获取消费记录
    */
-  getConsRecordsByUserId: function () {
+  getConsRecordsByUserId: function (e) {
+    if (e) {
+      this.data.pageNum = 0;
+    }
     wx.request({
       url: api.url + '/ezShop/services/integral/getConsRecordsByUserId',
       data: {
-        userId: app.globalData.userInfo.userId,
-        keyword: this.data.keyword
+        userId: 32807,
+        // userId: app.globalData.userInfo.userId,
+        keyword: this.data.keyword,
+        pageNum: this.data.pageNum,
+        pageSize: 10
       },
       success: ({ data }) => {
         console.log(data);
         if (data.stateCode == '0000') {
-          this.setData({
-            recordHistory: data.datas
-          });
+          if (data.datas) {
+            wx.hideLoading();
+            this.data.recordHistory = this.data.recordHistory.concat(data.datas);
+            this.setData({
+              recordHistory: this.data.recordHistory
+            });
+            this.data.pageNum++;
+          } else {
+            wx.showToast({
+              title: '已经没有更多记录了~',
+              duration: 1000
+            });
+          }
         } else {
+          wx.hideLoading();
           app.showErrorToast(this, data.errMsg, 1000);
         }
       },
       fail: (err) => {
+        wx.hideLoading();
         app.showErrorToast(this, '数据读取错误(getConsRecordsByUserId)', 1000);
       }
     })

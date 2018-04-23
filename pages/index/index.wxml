@@ -1,5 +1,6 @@
 <!--index.wxml-->
 <view class="container">
+  <navigator url="../member/member" class='membernav-btn'>会员说明</navigator>
   <view class="userinfo">
     <!-- <view class='top-container'> -->
     <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
@@ -20,6 +21,16 @@
     </block>
   </view>
   <!-- </view> -->
+    <view class="progress">
+      <view class="progress-bar progress-bar-danger progress-bar-striped active" style="width: {{percent}}">
+        <!-- <view class="progress-value">60%</view> -->
+      </view>
+      <view class='member-vip-cbox'>
+      <view class='member-vip-{{index+1}} member-vip' wx:for-items="{{members}}" wx:key="*this">
+      <image src='{{item.url}}' class='vip-icon' mode='widthFix'></image>
+      </view>
+      </view>
+    </view>
   <!-- 首页导航s -->
   <view class="dashboard">
     <view class='dashboard-position'>
@@ -59,7 +70,7 @@
     <image src="/images/decoration2.png" mode='widthFix' class='slide2-img'></image>
   </view>
   <!-- 自定义弹窗  -->
-   <view class='toast'>
-  <toast wx:if="{{errorToast.show}}" error="{{errorToast}}" bindhide="hideToast"></toast>
+  <view class='toast'>
+    <toast wx:if="{{errorToast.show}}" error="{{errorToast}}" bindhide="hideToast"></toast>
   </view>
 </view>

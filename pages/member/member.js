@@ -16,7 +16,7 @@ Page({
     members: [{
       icon: '/images/member01.png',
       iconDesc: '姓  名',
-      value: '',
+      value: 'trueName',
     }, {
         icon: '/images/member09.png',
       iconDesc: '手机号码',
@@ -145,7 +145,29 @@ Page({
   },
   submitData() {
     wx.request({
-      url: '',
+      url: 'https://www.youmahui.net/ezShop/services/user/updateUserXcxInfo?userId=32792&trueName=%E7%9C%9F%E5%AE%9E%E5%A7%93%E5%90%8D&sex=1&birthday=1996-01-05%2010:48:21&baby_birthday=2019-12-05%2010:48:21&expected_date=2019-12-05%2010:48:21&often_store_id=2&address=xx',
+      method: 'GET',
+      data: {
+        userId: app.globalData.userInfo.userId,
+      },
+      success: ({data}) => {
+        if (data.stateCode === '0000') {
+          wx.showToast({
+            title: '修改成功~',
+            duration: 1000
+          });
+          setTimeout(() => {
+            wx.navigateTo({
+              url: '../index/index',
+            });
+          }, 1000)
+        } else {
+          console.log(data.errMsg);
+        }
+      },
+      fail: (error) => {
+        console.log(error.message);
+      }
     })
   },
   logout() {
@@ -170,4 +192,10 @@ Page({
       'userInfo.points': '10'
     });
   },
+  // 输入的信息存储
+  memberChange: function(e) {
+    console.log(e);
+    let index = e.currentTarget.dataset.index;
+    let value = detail.value;
+  }
 })
